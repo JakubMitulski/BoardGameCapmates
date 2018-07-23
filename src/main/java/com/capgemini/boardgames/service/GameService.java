@@ -1,14 +1,14 @@
 package com.capgemini.boardgames.service;
 
-import com.capgemini.boardgames.model.Game;
-import com.capgemini.boardgames.model.User;
+import com.capgemini.boardgames.model.games.Game;
+
+import java.util.List;
 
 public interface GameService {
 
-    void showUserGameList(User user);
+    List getGamesFromUserGamesList(Integer userId);
 
-    void removeGameFromUserGameList(User user, Game game);
+    void removeGameFromUserGameList(Game game, Integer userId);
 
-    void addGameToUserGameList(User user);
-
+    void addGameToUserGameList(Game game, Integer userId);
 }

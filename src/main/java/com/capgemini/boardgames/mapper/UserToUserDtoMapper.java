@@ -15,7 +15,6 @@ public class UserToUserDtoMapper {
         userDto.setAvailability(user.getAvailability());
         userDto.setUserLevel(user.getUserLevel());
         userDto.setRankingPosition(user.getRankingPosition());
-        userDto.setGameCollection(user.getGameCollection());
         userDto.setGameHistory(user.getGameHistory());
         return userDto;
     }

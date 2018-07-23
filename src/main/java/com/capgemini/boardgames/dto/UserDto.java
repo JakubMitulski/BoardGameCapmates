@@ -19,6 +19,5 @@ public class UserDto {
     private Double rankingPosition;
     private UserLevel userLevel;
     private Availability availability;
-    private List gameCollection;
     private List gameHistory;
 }

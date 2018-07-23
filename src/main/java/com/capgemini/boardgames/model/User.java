@@ -17,13 +17,11 @@ public class User {
     private String email;
     private String password;
     private Availability availability;
-    private List gameCollection;
     private List gameHistory;
     private Double rankingPosition;
     private UserLevel userLevel;
 
     public User() {
-        this.gameCollection = new ArrayList();
         this.gameHistory = new ArrayList();
     }
 }
