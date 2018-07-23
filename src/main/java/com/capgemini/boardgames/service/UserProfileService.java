@@ -5,9 +5,9 @@ import com.capgemini.boardgames.model.User;
 
 public interface UserProfileService {
 
-    UserDto showUserProfile(User user);
+    UserDto showUserProfile(String email);
 
-    User editUserProfile(User user);
+    UserDto editUserProfile(User user);
 
-    void saveUserProfile(User user);
+    void saveUserProfile(UserDto userDto);
 }

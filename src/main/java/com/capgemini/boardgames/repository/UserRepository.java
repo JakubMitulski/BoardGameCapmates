@@ -1,7 +1,5 @@
 package com.capgemini.boardgames.repository;
 
-import com.capgemini.boardgames.dto.UserDto;
-import com.capgemini.boardgames.mapper.UserToUserDtoMapper;
 import com.capgemini.boardgames.model.User;
 
 import java.util.ArrayList;
@@ -16,19 +14,14 @@ public class UserRepository {
         this.usersList = new ArrayList<>();
     }
 
-    public UserDto show(User user) {
+    public User findByEmail(String email) {
         Optional<User> optionalUser = usersList
                 .stream()
-                .filter(searchedUser -> searchedUser.getEmail() == user.getEmail()).findAny();
+                .filter(user -> user.getEmail() == email).findAny();
 
-        if (optionalUser.isPresent()){
-            return new UserToUserDtoMapper().map(optionalUser.get());
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
         }
-        return null;
-    }
-
-    public User edit(User user) {
-
         return null;
     }
 
