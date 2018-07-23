@@ -13,6 +13,7 @@ public class User {
     private String firstname;
     private String lastname;
     private String motto;
+    private String email;
     private String password;
     private Availability availability;
     private List gameCollection;

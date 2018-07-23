@@ -1,10 +1,11 @@
 package com.capgemini.boardgames.service;
 
+import com.capgemini.boardgames.dto.UserDto;
 import com.capgemini.boardgames.model.User;
 
-public interface ProfileService {
+public interface UserProfileService {
 
-    void showUserProfile(User user);
+    UserDto showUserProfile(User user);
 
     User editUserProfile(User user);
 
