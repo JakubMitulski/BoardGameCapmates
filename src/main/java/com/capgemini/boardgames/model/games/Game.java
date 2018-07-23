@@ -6,7 +6,7 @@ public interface Game {
 
     List getSubscribersList();
 
-    void removeSubscriber(int userId);
+    void removeSubscriber(String email);
 
-    void addSubscriber(int userId);
+    void addSubscriber(String email);
 }

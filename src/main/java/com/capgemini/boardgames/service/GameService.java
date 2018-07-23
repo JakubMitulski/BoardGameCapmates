@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface GameService {
 
-    List getGamesFromUserGamesList(Integer userId);
+    List getGamesFromUserGamesList(String email);
 
-    void removeGameFromUserGameList(Game game, Integer userId);
+    void removeGameFromUserGameList(Game game, String email);
 
-    void addGameToUserGameList(Game game, Integer userId);
+    void addGameToUserGameList(Game game, String email);
 }

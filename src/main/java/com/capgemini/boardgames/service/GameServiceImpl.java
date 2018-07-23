@@ -12,17 +12,17 @@ public class GameServiceImpl implements GameService {
     private GameRepositoryImpl gameRepository;
 
     @Override
-    public List getGamesFromUserGamesList(Integer userId) {
-        return gameRepository.getUserGames(userId);
+    public List getGamesFromUserGamesList(String email) {
+        return gameRepository.getUserGames(email);
     }
 
     @Override
-    public void removeGameFromUserGameList(Game game, Integer userId) {
-        gameRepository.removeGame(game, userId);
+    public void removeGameFromUserGameList(Game game, String email) {
+        gameRepository.removeGame(game, email);
     }
 
     @Override
-    public void addGameToUserGameList(Game game, Integer userId) {
-        gameRepository.addGame(game, userId);
+    public void addGameToUserGameList(Game game, String email) {
+        gameRepository.addGame(game, email);
     }
 }

@@ -21,20 +21,20 @@ public class GameRepositoryImpl implements GameRepository {
         gamesCollection.add(new Scrabble());
     }
 
-    public List<Game> getUserGames(Integer userId) {
+    public List<Game> getUserGames(String userEmail) {
         return gamesCollection
                 .stream()
                 .filter(game -> game.getSubscribersList()
                         .stream()
-                        .allMatch(id -> id == userId))
+                        .allMatch(email -> email == userEmail))
                 .collect(Collectors.toList());
     }
 
-    public void addGame(Game game, Integer userId) {
-        game.addSubscriber(userId);
+    public void addGame(Game game, String email) {
+        game.addSubscriber(email);
     }
 
-    public void removeGame(Game game, Integer userId) {
-        game.removeSubscriber(userId);
+    public void removeGame(Game game, String email) {
+        game.removeSubscriber(email);
     }
 }

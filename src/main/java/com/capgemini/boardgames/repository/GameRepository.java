@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface GameRepository {
 
-    List<Game> getUserGames(Integer userId);
+    List<Game> getUserGames(String email);
 
-    void addGame(Game game, Integer userId);
+    void addGame(Game game, String email);
 
-    void removeGame(Game game, Integer userId);
+    void removeGame(Game game, String email);
 }
