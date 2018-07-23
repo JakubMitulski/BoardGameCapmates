@@ -3,15 +3,15 @@ package com.capgemini.boardgames.service;
 import com.capgemini.boardgames.dto.UserDto;
 import com.capgemini.boardgames.mapper.UserToUserDtoMapper;
 import com.capgemini.boardgames.model.User;
-import com.capgemini.boardgames.repository.UserRepository;
+import com.capgemini.boardgames.repository.UserRepositoryImpl;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserProfilServiceImpl implements UserProfileService {
 
-    private UserRepository userRepository;
+    private UserRepositoryImpl userRepository;
 
-    public UserProfilServiceImpl(UserRepository userRepository) {
+    public UserProfilServiceImpl(UserRepositoryImpl userRepository) {
         this.userRepository = userRepository;
     }
 
