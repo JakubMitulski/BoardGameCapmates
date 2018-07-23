@@ -20,12 +20,12 @@ public class Monopoly implements Game {
     }
 
     @Override
-    public void removeSubscriber(int userId) {
-        this.subscribersList.remove(userId);
+    public void removeSubscriber(String email) {
+        this.subscribersList.remove(email);
     }
 
     @Override
-    public void addSubscriber(int userId) {
-        this.subscribersList.add(userId);
+    public void addSubscriber(String email) {
+        this.subscribersList.add(email);
     }
 }
