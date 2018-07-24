@@ -11,6 +11,6 @@ public class GameLogEntry {
 
     private long userId;
     private long gameId;
-    private int result;
+    private long result;
     private long sessionId;
 }

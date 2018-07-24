@@ -14,10 +14,10 @@ public class UserRepositoryImpl implements UserRepository {
 
     public UserRepositoryImpl() {
         usersList = new ArrayList<>();
-        this.usersList.add(new User(1, "Jan", "Kowalski", "I like boardgames", "1@mail.com"));
-        this.usersList.add(new User(2, "Janusz", "Nowak", "Games are ok", "2@mail.com"));
-        this.usersList.add(new User(3, "Marian", "Mariusz", "Games freak", "3@mail.com"));
-        this.usersList.add(new User(4, "Wacław", "Wacek", "Winner", "4@mail.com"));
+        this.usersList.add(new User(1L, "Jan", "Kowalski", "I like boardgames", "1@mail.com"));
+        this.usersList.add(new User(2L, "Janusz", "Nowak", "Games are ok", "2@mail.com"));
+        this.usersList.add(new User(3L, "Marian", "Mariusz", "Games freak", "3@mail.com"));
+        this.usersList.add(new User(4L, "Wacław", "Wacek", "Winner", "4@mail.com"));
     }
 
     @Override
