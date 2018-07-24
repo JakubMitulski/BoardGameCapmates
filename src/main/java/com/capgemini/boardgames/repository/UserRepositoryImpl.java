@@ -29,7 +29,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findById(int id) {
-        Optional<User> optionalUser = usersList.stream()
+        Optional<User> optionalUser = usersList
+                .stream()
                 .filter(user -> user.getId() == id)
                 .findAny();
         if (optionalUser.isPresent()) {
@@ -41,6 +42,8 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void update(User user) {
         User userToSave = findById(user.getId());
+        userToSave.setFirstname(user.getFirstname());
+        userToSave.setLastname(user.getLastname());
         userToSave.setEmail(user.getEmail());
         userToSave.setAvailability(user.getAvailability());
         userToSave.setMotto(user.getMotto());

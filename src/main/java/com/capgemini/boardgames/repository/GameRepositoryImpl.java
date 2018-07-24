@@ -1,24 +1,25 @@
 package com.capgemini.boardgames.repository;
 
-import com.capgemini.boardgames.model.games.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.capgemini.boardgames.model.Game;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Repository
 public class GameRepositoryImpl implements GameRepository {
 
-    @Autowired
     private Set<Game> gamesCollection;
 
     public GameRepositoryImpl() {
-        gamesCollection.add(new Battleship());
-        gamesCollection.add(new Chess());
-        gamesCollection.add(new Monopoly());
-        gamesCollection.add(new Scrabble());
+        gamesCollection = new HashSet<>();
+        this.gamesCollection.add(new Game(1, "Battleship", 2, 2));
+        this.gamesCollection.add(new Game(2, "Chess", 2, 2));
+        this.gamesCollection.add(new Game(3, "Monopoly", 2, 4));
+        this.gamesCollection.add(new Game(4, "Scrabble", 2, 4));
     }
 
     public List<Game> getUserGames(String userEmail) {
@@ -30,11 +31,28 @@ public class GameRepositoryImpl implements GameRepository {
                 .collect(Collectors.toList());
     }
 
-    public void addGame(Game game, String email) {
-        game.addSubscriber(email);
+    public Game findGameByName(String gameName){
+        Optional<Game> optionalGame = gamesCollection
+                .stream()
+                .filter(game -> game.getName() == gameName)
+                .findAny();
+
+        if (optionalGame.isPresent()){
+            return optionalGame.get();
+        }
+        return null;
     }
 
-    public void removeGame(Game game, String email) {
-        game.removeSubscriber(email);
+    public void addGame(String gameName, String email) {
+        findGameByName(gameName).getSubscribersList().add(email);
+    }
+
+    public void removeGame(String gameName, String email) {
+        findGameByName(gameName).getSubscribersList().remove(email);
+    }
+
+    @Override
+    public void addNewGameToGamesCollection(Game game) {
+        gamesCollection.add(game);
     }
 }

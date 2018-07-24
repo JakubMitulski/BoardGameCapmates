@@ -26,11 +26,12 @@ public class UserProfilServiceImpl implements UserProfileService {
 
     @Override
     public User editUserProfile(UserDto userDto) {
-        User user = userRepository.findByEmail(userDto.getEmail());
-        user.setEmail(user.getEmail());
-        user.setMotto(user.getMotto());
-        user.setAvailability(user.getAvailability());
-        userRepository.update(user);
+        User user = userRepository.findById(userDto.getId());
+        user.setFirstname(userDto.getFirstname());
+        user.setLastname(userDto.getLastname());
+        user.setEmail(userDto.getEmail());
+        user.setMotto(userDto.getMotto());
+        user.setAvailability(userDto.getAvailability());
         return user;
     }
 }
