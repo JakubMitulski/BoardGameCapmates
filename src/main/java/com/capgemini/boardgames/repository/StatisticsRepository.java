@@ -1,10 +1,12 @@
 package com.capgemini.boardgames.repository;
 
+import com.capgemini.boardgames.model.statistics.GameLogEntry;
+
 import java.util.List;
 
 public interface StatisticsRepository {
 
-    List getUserLogs(long userId);
+    List<GameLogEntry> getUserLogs(long userId);
 
-    List getGameLogs(long gameId);
+    List<GameLogEntry> getGameLogs(long gameId);
 }

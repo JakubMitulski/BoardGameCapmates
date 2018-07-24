@@ -1,6 +1,6 @@
 package com.capgemini.boardgames.repository;
 
-import com.capgemini.boardgames.model.GameLogEntry;
+import com.capgemini.boardgames.model.statistics.GameLogEntry;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
     }
 
     @Override
-    public List getUserLogs(long userId) {
+    public List<GameLogEntry> getUserLogs(long userId) {
         return historyLogsCollection
                 .stream()
                 .filter(gameLogEntry -> gameLogEntry.getUserId() == userId)
@@ -33,7 +33,7 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
     }
 
     @Override
-    public List getGameLogs(long gameId) {
+    public List<GameLogEntry> getGameLogs(long gameId) {
         return historyLogsCollection
                 .stream()
                 .filter(gameLogEntry -> gameLogEntry.getGameId() == gameId)

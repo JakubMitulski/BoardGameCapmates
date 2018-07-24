@@ -1,4 +1,4 @@
-package com.capgemini.boardgames.model;
+package com.capgemini.boardgames.model.statistics;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

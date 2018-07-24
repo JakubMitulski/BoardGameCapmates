@@ -1,7 +1,5 @@
 package com.capgemini.boardgames.model.statistics;
 
-import com.capgemini.boardgames.model.GameLogEntry;
-
 import java.util.*;
 
 public class RankingPositionManager {

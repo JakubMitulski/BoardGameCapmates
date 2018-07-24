@@ -1,4 +1,4 @@
-package com.capgemini.boardgames.model;
+package com.capgemini.boardgames.model.statistics;
 
 public enum UserLevel {
     BEGGINER,
