@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 public class UserProfilService {
 
     private UserRepository userRepository;
-
     private UserToUserDtoMapper userToUserDtoMapper;
 
 

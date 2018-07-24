@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class User {
 
-    private Long id;
+    private long id;
     private String firstname;
     private String lastname;
     private String motto;
@@ -23,7 +23,7 @@ public class User {
         this.gameHistory = new ArrayList();
     }
 
-    public User(Long id, String firstname, String lastname, String motto, String email) {
+    public User(long id, String firstname, String lastname, String motto, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;

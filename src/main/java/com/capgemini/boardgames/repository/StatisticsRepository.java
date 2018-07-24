@@ -4,5 +4,7 @@ import java.util.List;
 
 public interface StatisticsRepository {
 
-    List getUserLogs(Long userId);
+    List getUserLogs(long userId);
+
+    List getGameLogs(long gameId);
 }

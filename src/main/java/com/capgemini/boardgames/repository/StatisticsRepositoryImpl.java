@@ -14,25 +14,26 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
 
     public StatisticsRepositoryImpl() {
         historyLogsCollection = new ArrayList<>();
-        this.historyLogsCollection.add(new GameLogEntry(1L, 1L, 10L, 100L));
-        this.historyLogsCollection.add(new GameLogEntry(2L, 1L, 1L, 100L));
-        this.historyLogsCollection.add(new GameLogEntry(1L, 1L, 10L, 120L));
-        this.historyLogsCollection.add(new GameLogEntry(4L, 1L, 1L, 120L));
-        this.historyLogsCollection.add(new GameLogEntry(1L, 3L, 1L, 140L));
-        this.historyLogsCollection.add(new GameLogEntry(2L, 3L, 1L, 140L));
-        this.historyLogsCollection.add(new GameLogEntry(3L, 3L, 10L, 140L));
-        this.historyLogsCollection.add(new GameLogEntry(4L, 3L, 1L, 140L));
+        this.historyLogsCollection.add(new GameLogEntry(1, 1, 10, 100));
+        this.historyLogsCollection.add(new GameLogEntry(2, 1, 1, 100));
+        this.historyLogsCollection.add(new GameLogEntry(1, 1, 10, 120));
+        this.historyLogsCollection.add(new GameLogEntry(4, 1, 1, 120));
+        this.historyLogsCollection.add(new GameLogEntry(1, 3, 1, 140));
+        this.historyLogsCollection.add(new GameLogEntry(2, 3, 1, 140));
+        this.historyLogsCollection.add(new GameLogEntry(3, 3, 10, 140));
+        this.historyLogsCollection.add(new GameLogEntry(4, 3, 1, 140));
     }
 
     @Override
-    public List getUserLogs(Long userId) {
+    public List getUserLogs(long userId) {
         return historyLogsCollection
                 .stream()
                 .filter(gameLogEntry -> gameLogEntry.getUserId() == userId)
                 .collect(Collectors.toList());
     }
 
-    public List getGameLogs(Long gameId) {
+    @Override
+    public List getGameLogs(long gameId) {
         return historyLogsCollection
                 .stream()
                 .filter(gameLogEntry -> gameLogEntry.getGameId() == gameId)

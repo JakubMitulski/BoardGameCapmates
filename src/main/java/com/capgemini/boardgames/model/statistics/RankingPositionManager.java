@@ -8,7 +8,7 @@ public class RankingPositionManager {
 
     public long getRankingPosition(List<GameLogEntry> gameLogs, long userId) {
         Map<Long, Long> map = new HashMap<>();
-        List<UserResultObj> resultList = new ArrayList<>();
+        List<UserRankingResultObj> resultList = new ArrayList<>();
 
         for (GameLogEntry log : gameLogs) {
             long playerId = log.getUserId();
@@ -25,7 +25,7 @@ public class RankingPositionManager {
 
 
         for (Map.Entry<Long, Long> entry : map.entrySet()) {
-            resultList.add(new UserResultObj(entry.getKey(), entry.getValue()));
+            resultList.add(new UserRankingResultObj(entry.getKey(), entry.getValue()));
         }
 
 

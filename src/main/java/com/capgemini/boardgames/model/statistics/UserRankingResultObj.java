@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserResultObj {
+public class UserRankingResultObj {
 
     private long userId;
     private long userGameResult;
