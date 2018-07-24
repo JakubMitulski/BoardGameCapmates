@@ -1,12 +1,12 @@
 package com.capgemini.boardgames.service;
 
-import com.capgemini.boardgames.model.statistics.GameLogEntry;
-import com.capgemini.boardgames.model.statistics.UserLevel;
-import com.capgemini.boardgames.model.statistics.RankingPositionManager;
-import com.capgemini.boardgames.model.statistics.UserLevelDistributor;
+import com.capgemini.boardgames.model.Game;
+import com.capgemini.boardgames.model.statistics.*;
+import com.capgemini.boardgames.repository.GameRepository;
 import com.capgemini.boardgames.repository.StatisticsRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 public class StatisticsService {
 
     private StatisticsRepository statisticsRepository;
+    private GameRepository gameRepository;
 
-
-    public List getUserGamesHistory(long userId) {
+    public List<GameLogEntry> getUserGamesHistory(long userId) {
         //TODO dodać DTO listy
         return statisticsRepository.getUserLogs(userId);
     }
@@ -42,5 +42,20 @@ public class StatisticsService {
         }
 
         return new UserLevelDistributor().getLevel(overallResult);
+    }
+
+
+    public List getUserStatistics(long userId) {
+        List<Game> userGames = gameRepository.getUserGames(userId);
+        List<UserStatisticsResultObj> userGamesStatistics = new ArrayList<>();
+
+        for (Game game : userGames) {
+            long gameId = game.getId();
+            long gameRankingPosition = getUserRankingPos(gameId, userId);
+            UserLevel gameLevel = getUserLevel(gameId, userId);
+            userGamesStatistics.add(new UserStatisticsResultObj(game.getName(), gameRankingPosition, gameLevel));
+        }
+
+        return userGamesStatistics;
     }
 }

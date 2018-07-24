@@ -14,7 +14,7 @@ public class Game {
     private String name;
     private int minPlayerNumber;
     private int maxPlayerNumber;
-    private List<String> subscribersList;
+    private List<Long> subscribersList;
 
     public Game() {
         this.subscribersList = new ArrayList<>();

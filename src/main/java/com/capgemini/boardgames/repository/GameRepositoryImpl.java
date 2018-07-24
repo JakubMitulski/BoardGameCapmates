@@ -23,12 +23,12 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public List<Game> getUserGames(String userEmail) {
+    public List<Game> getUserGames(long userId) {
         return gamesCollection
                 .stream()
                 .filter(game -> game.getSubscribersList()
                         .stream()
-                        .allMatch(email -> email == userEmail))
+                        .allMatch(id -> id == userId))
                 .collect(Collectors.toList());
     }
 
@@ -46,13 +46,13 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public void addGame(String gameName, String email) {
-        findGameByName(gameName).getSubscribersList().add(email);
+    public void addGame(String gameName, long userId) {
+        findGameByName(gameName).getSubscribersList().add(userId);
     }
 
     @Override
-    public void removeGame(String gameName, String email) {
-        findGameByName(gameName).getSubscribersList().remove(email);
+    public void removeGame(String gameName, long userId) {
+        findGameByName(gameName).getSubscribersList().remove(userId);
     }
 
     @Override

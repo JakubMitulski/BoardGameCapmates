@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface GameRepository {
 
-    List<Game> getUserGames(String email);
+    List<Game> getUserGames(long id);
 
     Game findGameByName(String gameName);
 
-    void addGame(String gameName, String email);
+    void addGame(String gameName, long userId);
 
-    void removeGame(String gameName, String email);
+    void removeGame(String gameName, long userId);
 
     void addNewGameToGamesCollection(Game game);
 }
