@@ -13,7 +13,11 @@ public class UserRepositoryImpl implements UserRepository {
     private List<User> usersList;
 
     public UserRepositoryImpl() {
-        this.usersList = new ArrayList<>();
+        usersList = new ArrayList<>();
+        this.usersList.add(new User(1, "Jan", "Kowalski", "I like boardgames", "1@mail.com"));
+        this.usersList.add(new User(2, "Janusz", "Nowak", "Games are ok", "2@mail.com"));
+        this.usersList.add(new User(3, "Marian", "Mariusz", "Games freak", "3@mail.com"));
+        this.usersList.add(new User(4, "Wacław", "Wacek", "Winner", "4@mail.com"));
     }
 
     @Override
@@ -28,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findById(int id) {
+    public User findById(long id) {
         Optional<User> optionalUser = usersList
                 .stream()
                 .filter(user -> user.getId() == id)

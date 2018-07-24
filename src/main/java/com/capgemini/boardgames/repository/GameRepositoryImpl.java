@@ -22,6 +22,7 @@ public class GameRepositoryImpl implements GameRepository {
         this.gamesCollection.add(new Game(4, "Scrabble", 2, 4));
     }
 
+    @Override
     public List<Game> getUserGames(String userEmail) {
         return gamesCollection
                 .stream()
@@ -31,22 +32,25 @@ public class GameRepositoryImpl implements GameRepository {
                 .collect(Collectors.toList());
     }
 
-    public Game findGameByName(String gameName){
+    @Override
+    public Game findGameByName(String gameName) {
         Optional<Game> optionalGame = gamesCollection
                 .stream()
                 .filter(game -> game.getName() == gameName)
                 .findAny();
 
-        if (optionalGame.isPresent()){
+        if (optionalGame.isPresent()) {
             return optionalGame.get();
         }
         return null;
     }
 
+    @Override
     public void addGame(String gameName, String email) {
         findGameByName(gameName).getSubscribersList().add(email);
     }
 
+    @Override
     public void removeGame(String gameName, String email) {
         findGameByName(gameName).getSubscribersList().remove(email);
     }

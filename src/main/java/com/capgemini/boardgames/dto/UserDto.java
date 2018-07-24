@@ -11,12 +11,12 @@ import java.util.List;
 @Setter
 public class UserDto {
 
-    private int id;
+    private long id;
     private String firstname;
     private String lastname;
     private String motto;
     private String email;
-    private Double rankingPosition;
+    private long rankingPosition;
     private UserLevel userLevel;
     private Availability availability;
     private List gameHistory;

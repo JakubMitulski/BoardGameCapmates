@@ -8,6 +8,8 @@ public interface GameRepository {
 
     List<Game> getUserGames(String email);
 
+    Game findGameByName(String gameName);
+
     void addGame(String gameName, String email);
 
     void removeGame(String gameName, String email);

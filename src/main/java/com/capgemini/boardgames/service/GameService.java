@@ -1,17 +1,38 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.GameDto;
-import com.capgemini.boardgames.model.Game;
+import com.capgemini.boardgames.mapper.GameDtoToGameMapper;
+import com.capgemini.boardgames.repository.GameRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface GameService {
+@Service
+public class GameService {
 
-    List getGamesFromUserGamesList(String email);
+    private GameRepository gameRepository;
 
-    void removeGameFromUserGameList(String gameName, String email);
+    @Autowired
+    private GameDtoToGameMapper gameDtoToGameMapper;
 
-    void addGameToUserGameList(String gameName, String email);
 
-    void addNewGameToSystem(GameDto gameDto);
+    public List getGamesFromUserGamesList(String email) {
+        return gameRepository.getUserGames(email);
+    }
+
+
+    public void removeGameFromUserGameList(String gameName, String email) {
+        gameRepository.removeGame(gameName, email);
+    }
+
+
+    public void addGameToUserGameList(String gameName, String email) {
+        gameRepository.addGame(gameName, email);
+    }
+
+
+    public void addNewGameToSystem(GameDto gameDto) {
+        gameRepository.addNewGameToGamesCollection(gameDtoToGameMapper.map(gameDto));
+    }
 }

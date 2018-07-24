@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class Game {
 
-    private int id;
+    private long id;
     private String name;
     private int minPlayerNumber;
     private int maxPlayerNumber;
@@ -20,7 +20,7 @@ public class Game {
         this.subscribersList = new ArrayList<>();
     }
 
-    public Game(int id, String name, int minPlayerNumber, int maxPlayerNumber) {
+    public Game(long id, String name, int minPlayerNumber, int maxPlayerNumber) {
         this.id = id;
         this.name = name;
         this.minPlayerNumber = minPlayerNumber;
