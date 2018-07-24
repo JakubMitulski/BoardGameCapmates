@@ -29,7 +29,7 @@ public class RankingPositionManager {
         }
 
 
-        ResultComparator resultComparator = new ResultComparator();
+        RankingResultComparator resultComparator = new RankingResultComparator();
         Collections.sort(resultList, resultComparator);
 
         return (resultList

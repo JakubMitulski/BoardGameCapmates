@@ -2,7 +2,7 @@ package com.capgemini.boardgames.model.statistics;
 
 import java.util.Comparator;
 
-class ResultComparator implements Comparator<UserRankingResultObj> {
+class RankingResultComparator implements Comparator<UserRankingResultObj> {
 
     @Override
     public int compare(UserRankingResultObj o1, UserRankingResultObj o2) {
