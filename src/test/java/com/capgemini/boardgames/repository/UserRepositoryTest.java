@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 public class UserRepositoryTest {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Test
     public void shouldReturnCorrectUserWhenFindByEmailMethodCall() {

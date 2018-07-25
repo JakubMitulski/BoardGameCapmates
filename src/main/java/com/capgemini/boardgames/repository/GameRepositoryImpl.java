@@ -3,10 +3,7 @@ package com.capgemini.boardgames.repository;
 import com.capgemini.boardgames.model.Game;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -26,12 +23,16 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public List<Game> getUserGames(long userId) {
-        return gamesCollection
-                .stream()
-                .filter(game -> game.getSubscribersList()
-                        .stream()
-                        .allMatch(id -> id == userId))
-                .collect(Collectors.toList());
+        List<Game> userGames = new ArrayList<>();
+
+        for (Game game : gamesCollection) {
+            Optional<Long> optionalId = game.getSubscribersList().stream().filter(id -> id == userId).findAny();
+
+            if (optionalId.isPresent()){
+                userGames.add(game);
+            }
+        }
+        return userGames;
     }
 
     @Override
