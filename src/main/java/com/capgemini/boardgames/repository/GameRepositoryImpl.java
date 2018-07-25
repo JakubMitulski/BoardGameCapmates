@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Repository
 public class GameRepositoryImpl implements GameRepository {
@@ -28,7 +27,7 @@ public class GameRepositoryImpl implements GameRepository {
         for (Game game : gamesCollection) {
             Optional<Long> optionalId = game.getSubscribersList().stream().filter(id -> id == userId).findAny();
 
-            if (optionalId.isPresent()){
+            if (optionalId.isPresent()) {
                 userGames.add(game);
             }
         }
