@@ -14,9 +14,15 @@ public class Playability {
     private LocalTime endTime;
     private String message;
 
-    public Playability(LocalTime startTime, LocalTime endTime, String message) {
-        this.startTime = LocalTime.parse("0:00");
-        this.endTime = LocalTime.parse("0:00");
+    public Playability() {
+        this.startTime = LocalTime.parse("00:00");
+        this.endTime = LocalTime.parse("00:00");
         this.message = "";
+    }
+
+    public Playability(LocalTime startTime, LocalTime endTime, String message) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.message = message;
     }
 }

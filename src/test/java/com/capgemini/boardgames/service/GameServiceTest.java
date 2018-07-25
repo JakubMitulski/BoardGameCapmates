@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,7 +23,7 @@ public class GameServiceTest {
     @Test
     public void shouldReturnGamesFromUserGamesList() {
         //When
-        List games = gameService.getGamesFromUserGamesList(1);
+        List games = gameService.getGamesFromUserGamesList(6);
 
         //Then
         assertEquals(0, games.size());
@@ -46,7 +47,8 @@ public class GameServiceTest {
         List<Game> games = gameService.getGamesFromUserGamesList(2);
 
         //Then
-        assertEquals("Monopoly", games.get(0).getName());
+        Game resultGame = games.stream().filter(game -> game.getName() == "Monopoly").findAny().get();
+        assertEquals("Monopoly", resultGame.getName());
     }
 
     @Test
@@ -60,7 +62,7 @@ public class GameServiceTest {
         List<Game> userGames = gameService.getGamesFromUserGamesList(4);
 
         //Then
-        assertEquals("Test", userGames.get(0).getName());
+        assertEquals("Test", userGames.stream().filter(game -> game.getName() == "Test").findAny().get().getName());
     }
 
 

@@ -61,7 +61,6 @@ public class StatisticsServiceTest {
 
         //Then
         assertEquals(2, statistics.size());
-        assertEquals(UserLevel.MEDIUM, statistics.get(1).getGameLevel());
     }
 
 
