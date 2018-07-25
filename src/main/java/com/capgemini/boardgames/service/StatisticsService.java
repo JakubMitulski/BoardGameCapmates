@@ -50,7 +50,7 @@ public class StatisticsService {
     }
 
 
-    public List getUserStatistics(long userId) {
+    public List<UserStatisticsResultObj> getUserStatistics(long userId) {
         List<Game> userGames = gameRepository.getUserGames(userId);
         List<UserStatisticsResultObj> userGamesStatistics = new ArrayList<>();
 

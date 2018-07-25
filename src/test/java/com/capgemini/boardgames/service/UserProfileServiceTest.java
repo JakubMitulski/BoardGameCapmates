@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.model.playability.Playability;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class UserProfileServiceTest {
     @Test
     public void shouldEditUserProfileAndReturnDto() {
         //Given
-        UserDto userDto = new UserDto(5, "Stefan", "Stefanowicz", "Witam", "stefan@mail.com");
+        UserDto userDto = new UserDto(5, "Stefan", "Stefanowicz", "Witam", "stefan@mail.com", "admin", new Playability());
 
         //When
         userProfileService.editUserProfile(userDto);

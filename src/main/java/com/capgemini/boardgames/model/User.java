@@ -18,10 +18,9 @@ public class User {
     private String email;
     private String password;
     private Playability playability;
-    private List gameHistory;
 
     public User() {
-        this.gameHistory = new ArrayList();
+        this.playability = new Playability();
     }
 
     public User(long id, String firstname, String lastname, String motto, String email) {
@@ -30,5 +29,6 @@ public class User {
         this.lastname = lastname;
         this.motto = motto;
         this.email = email;
+        this.playability = new Playability();
     }
 }

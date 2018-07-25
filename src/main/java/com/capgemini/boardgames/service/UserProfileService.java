@@ -32,13 +32,12 @@ public class UserProfileService {
     }
 
 
-    public User editUserProfile(UserDto userDto) {
+    public void editUserProfile(UserDto userDto) {
         User user = userRepository.findById(userDto.getId());
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());
         user.setEmail(userDto.getEmail());
         user.setMotto(userDto.getMotto());
         user.setPlayability(userDto.getPlayability());
-        return user;
     }
 }

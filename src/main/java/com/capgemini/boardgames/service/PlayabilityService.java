@@ -40,13 +40,13 @@ public class PlayabilityService {
 
     public void removeUserPlayabilityHours(long userId, String message) {
         Playability playability = userRepository.findById(userId).getPlayability();
-        playability.setStartTime(LocalTime.parse("0:00"));
-        playability.setEndTime(LocalTime.parse("0:00"));
+        playability.setStartTime(LocalTime.parse("00:00"));
+        playability.setEndTime(LocalTime.parse("00:00"));
         playability.setMessage(message);
     }
 
 
-    public List getUsersWithSimilarPlayability(long userId, String gameName) {
+    public List<Long> getUsersWithSimilarPlayability(long userId, String gameName) {
 
         List<Long> users = gameRepository.getUsersWithSpecifiedGame(gameName);
         Playability userPlayability = userRepository.findById(userId).getPlayability();
@@ -56,7 +56,7 @@ public class PlayabilityService {
             User otherUser = userRepository.findById(id);
             Boolean isSimilar = new PlayabilityComparator().compare(userPlayability, otherUser.getPlayability());
 
-            if (isSimilar) {
+            if (isSimilar && id != userId) {
                 usersWithSimilarPlayability.add(id);
             }
         }
