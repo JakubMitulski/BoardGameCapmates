@@ -59,4 +59,9 @@ public class GameRepositoryImpl implements GameRepository {
     public void addNewGameToGamesCollection(Game game) {
         gamesCollection.add(game);
     }
+
+    @Override
+    public List<Long> getUsersWithSpecifiedGame(String gameName) {
+        return findGameByName(gameName).getSubscribersList();
+    }
 }

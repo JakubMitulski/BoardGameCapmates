@@ -15,4 +15,7 @@ public interface GameRepository {
     void removeGame(String gameName, long userId);
 
     void addNewGameToGamesCollection(Game game);
+
+    List<Long> getUsersWithSpecifiedGame(String gameName);
+
 }

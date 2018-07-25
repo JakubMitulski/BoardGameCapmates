@@ -16,6 +16,7 @@ public class StatisticsService {
     private StatisticsRepository statisticsRepository;
     private GameRepository gameRepository;
 
+
     public List<GameLogEntry> getUserGamesHistory(long userId) {
         //TODO dodać DTO listy
         return statisticsRepository.getUserLogs(userId);

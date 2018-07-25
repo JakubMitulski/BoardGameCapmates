@@ -1,5 +1,6 @@
 package com.capgemini.boardgames.model;
 
+import com.capgemini.boardgames.model.playability.Playability;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ public class User {
     private String motto;
     private String email;
     private String password;
-    private Availability availability;
+    private Playability playability;
     private List gameHistory;
 
     public User() {

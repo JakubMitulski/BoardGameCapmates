@@ -49,7 +49,12 @@ public class UserRepositoryImpl implements UserRepository {
         userToSave.setFirstname(user.getFirstname());
         userToSave.setLastname(user.getLastname());
         userToSave.setEmail(user.getEmail());
-        userToSave.setAvailability(user.getAvailability());
+        userToSave.setPlayability(user.getPlayability());
         userToSave.setMotto(user.getMotto());
+    }
+
+    @Override
+    public List getUserList() {
+        return this.usersList;
     }
 }

@@ -17,18 +17,18 @@ public class GameService {
     private GameDtoToGameMapper gameDtoToGameMapper;
 
 
-    public List getGamesFromUserGamesList(String email) {
-        return gameRepository.getUserGames(email);
+    public List getGamesFromUserGamesList(long userId) {
+        return gameRepository.getUserGames(userId);
     }
 
 
-    public void removeGameFromUserGameList(String gameName, String email) {
-        gameRepository.removeGame(gameName, email);
+    public void removeGameFromUserGameList(String gameName, long userId) {
+        gameRepository.removeGame(gameName, userId);
     }
 
 
-    public void addGameToUserGameList(String gameName, String email) {
-        gameRepository.addGame(gameName, email);
+    public void addGameToUserGameList(String gameName, long userId) {
+        gameRepository.addGame(gameName, userId);
     }
 
 

@@ -1,6 +1,6 @@
 package com.capgemini.boardgames.dto;
 
-import com.capgemini.boardgames.model.Availability;
+import com.capgemini.boardgames.model.playability.Playability;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +15,6 @@ public class UserDto {
     private String lastname;
     private String motto;
     private String email;
-    private Availability availability;
+    private Playability playability;
     private List gameHistory;
 }

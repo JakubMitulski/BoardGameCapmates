@@ -18,8 +18,13 @@ public class UserProfilService {
     }
 
 
-    public UserDto getUserProfile(String email) {
+    public UserDto getUserProfileByEmail(String email) {
         return userToUserDtoMapper.map(userRepository.findByEmail(email));
+    }
+
+
+    public UserDto getUserProfileById(long id) {
+        return userToUserDtoMapper.map(userRepository.findById(id));
     }
 
 
@@ -29,7 +34,7 @@ public class UserProfilService {
         user.setLastname(userDto.getLastname());
         user.setEmail(userDto.getEmail());
         user.setMotto(userDto.getMotto());
-        user.setAvailability(userDto.getAvailability());
+        user.setPlayability(userDto.getPlayability());
         return user;
     }
 }

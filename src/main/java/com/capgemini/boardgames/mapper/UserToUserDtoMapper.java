@@ -14,7 +14,7 @@ public class UserToUserDtoMapper {
         userDto.setLastname(user.getLastname());
         userDto.setEmail(user.getEmail());
         userDto.setMotto(user.getMotto());
-        userDto.setAvailability(user.getAvailability());
+        userDto.setPlayability(user.getPlayability());
         userDto.setGameHistory(user.getGameHistory());
         return userDto;
     }
