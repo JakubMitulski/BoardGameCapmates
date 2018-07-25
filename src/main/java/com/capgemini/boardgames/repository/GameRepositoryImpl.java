@@ -7,19 +7,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Repository
 public class GameRepositoryImpl implements GameRepository {
 
     private Set<Game> gamesCollection;
+    public static AtomicLong counter = new AtomicLong(1);
 
     public GameRepositoryImpl() {
         gamesCollection = new HashSet<>();
-        this.gamesCollection.add(new Game(1, "Battleship", 2, 2));
-        this.gamesCollection.add(new Game(2, "Chess", 2, 2));
-        this.gamesCollection.add(new Game(3, "Monopoly", 2, 4));
-        this.gamesCollection.add(new Game(4, "Scrabble", 2, 4));
+        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Battleship", 2, 2));
+        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Chess", 2, 2));
+        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Monopoly", 2, 4));
+        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Scrabble", 2, 4));
     }
 
     @Override

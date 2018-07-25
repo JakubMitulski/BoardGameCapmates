@@ -39,6 +39,4 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                 .filter(gameLogEntry -> gameLogEntry.getGameId() == gameId)
                 .collect(Collectors.toList());
     }
-
-
 }
