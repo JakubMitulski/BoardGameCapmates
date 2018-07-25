@@ -4,6 +4,7 @@ import com.capgemini.boardgames.model.Game;
 import com.capgemini.boardgames.model.statistics.*;
 import com.capgemini.boardgames.repository.GameRepository;
 import com.capgemini.boardgames.repository.StatisticsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ import java.util.stream.Collectors;
 @Service
 public class StatisticsService {
 
+    @Autowired
     private StatisticsRepository statisticsRepository;
+
+    @Autowired
     private GameRepository gameRepository;
 
 
