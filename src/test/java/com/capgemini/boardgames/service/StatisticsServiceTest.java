@@ -1,5 +1,6 @@
 package com.capgemini.boardgames.service;
 
+import com.capgemini.boardgames.dto.GameDto;
 import com.capgemini.boardgames.dto.GameLogEntryDto;
 import com.capgemini.boardgames.model.statistics.UserLevel;
 import com.capgemini.boardgames.model.statistics.UserStatisticsResultObj;
@@ -54,9 +55,13 @@ public class StatisticsServiceTest {
 
     @Test
     public void shouldReturnUserStatistics() {
+        //Given
+        GameDto gameDto1 = new GameDto(1, "Battleship", 2, 2);
+        GameDto gameDto3 = new GameDto(3, "Monopoly", 2, 2);
+
         //When
-        gameService.addGameToUserGameList("Monopoly", 1);
-        gameService.addGameToUserGameList("Battleship", 1);
+        gameService.addGameToUserGameList(gameDto1, 1);
+        gameService.addGameToUserGameList(gameDto3, 1);
         List<UserStatisticsResultObj> statistics = statisticsService.getUserStatistics(1);
 
         //Then

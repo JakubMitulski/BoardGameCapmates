@@ -36,8 +36,14 @@ public class GameService {
     }
 
 
-    public void addGameToUserGameList(String gameName, long userId) {
-        gameRepository.addGame(gameName, userId);
+    public void addGameToUserGameList(GameDto gameDto, long userId) {
+        boolean contains = gameRepository.checkIfGamesCollectionContainsGame(gameDto.getName());
+
+        if (!contains){
+            addNewGameToSystem(gameDto);
+        }
+
+        gameRepository.addGame(gameDto.getName(), userId);
     }
 
 

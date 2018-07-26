@@ -3,6 +3,7 @@ package com.capgemini.boardgames.repository;
 import com.capgemini.boardgames.model.Game;
 
 import java.util.List;
+import java.util.Set;
 
 public interface GameRepository {
 
@@ -18,4 +19,5 @@ public interface GameRepository {
 
     List<Long> getUsersWithSpecifiedGame(String gameName);
 
+    boolean checkIfGamesCollectionContainsGame(String gameName);
 }

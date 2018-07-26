@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,8 +34,11 @@ public class GameServiceTest {
 
     @Test
     public void shouldRemoveSpecifiedGameFromUserGames() {
+        //Given
+        GameDto gameDto = new GameDto(3, "Monopoly", 2, 2);
+
         //When
-        gameService.addGameToUserGameList("Monopoly", 5);
+        gameService.addGameToUserGameList(gameDto, 5);
         gameService.removeGameFromUserGameList("Monopoly", 5);
         List games = gameService.getGamesFromUserGamesList(5);
 
@@ -46,8 +48,11 @@ public class GameServiceTest {
 
     @Test
     public void shouldAddSpecifiedGameFromUserGames() {
+        //Given
+        GameDto gameDto = new GameDto(3, "Monopoly", 2, 2);
+
         //When
-        gameService.addGameToUserGameList("Monopoly", 2);
+        gameService.addGameToUserGameList(gameDto, 2);
         List<Game> games = gameRepository.getUserGames(2);
 
         //Then
@@ -62,7 +67,7 @@ public class GameServiceTest {
 
         //When
         gameService.addNewGameToSystem(gameDto);
-        gameService.addGameToUserGameList("Test", 4);
+        gameService.addGameToUserGameList(gameDto, 4);
         List<Game> userGames = gameRepository.getUserGames(4);
 
         //Then

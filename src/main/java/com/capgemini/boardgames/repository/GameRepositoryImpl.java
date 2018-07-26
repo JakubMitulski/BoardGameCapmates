@@ -66,4 +66,9 @@ public class GameRepositoryImpl implements GameRepository {
     public List<Long> getUsersWithSpecifiedGame(String gameName) {
         return findGameByName(gameName).getSubscribersList();
     }
+
+    @Override
+    public boolean checkIfGamesCollectionContainsGame(String gameName){
+        return gamesCollection.stream().filter(game -> game.getName() == gameName).findAny().isPresent();
+    }
 }
