@@ -35,7 +35,7 @@ public class UserProfileServiceMockitoTest {
 
     @BeforeClass
     public static void init() {
-        userDto = new UserDto(1, "Jan", "Kowalski", "I like boardgames", "1@mail.com", "password", new Playability());
+        userDto = new UserDto(1, "Jan", "Kowalski", "I like boardgames", "1@mail.com", "password");
     }
 
     @Before

@@ -17,11 +17,11 @@ public class UserRepositoryImpl implements UserRepository {
 
     public UserRepositoryImpl() {
         usersList = new ArrayList<>();
-        this.usersList.add(new User(counter.getAndIncrement(), "Jan", "Kowalski", "I like boardgames", "1@mail.com"));
-        this.usersList.add(new User(counter.getAndIncrement(), "Janusz", "Nowak", "Games are ok", "2@mail.com"));
-        this.usersList.add(new User(counter.getAndIncrement(), "Marian", "Mariusz", "Games freak", "3@mail.com"));
-        this.usersList.add(new User(counter.getAndIncrement(), "Wacław", "Wacek", "Winner", "4@mail.com"));
-        this.usersList.add(new User(counter.getAndIncrement(), "Test", "Testowy", "Test", "test@mail.com"));
+        this.usersList.add(new User(counter.getAndIncrement(), "Jan", "Kowalski", "I like boardgames", "1@mail.com", "password"));
+        this.usersList.add(new User(counter.getAndIncrement(), "Janusz", "Nowak", "Games are ok", "2@mail.com", "password"));
+        this.usersList.add(new User(counter.getAndIncrement(), "Marian", "Mariusz", "Games freak", "3@mail.com", "password"));
+        this.usersList.add(new User(counter.getAndIncrement(), "Wacław", "Wacek", "Winner", "4@mail.com", "password"));
+        this.usersList.add(new User(counter.getAndIncrement(), "Test", "Testowy", "Test", "test@mail.com", "password"));
     }
 
     @Override

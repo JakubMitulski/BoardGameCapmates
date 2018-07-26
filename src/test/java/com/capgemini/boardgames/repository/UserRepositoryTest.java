@@ -2,7 +2,6 @@ package com.capgemini.boardgames.repository;
 
 import com.capgemini.boardgames.dto.UserDto;
 import com.capgemini.boardgames.model.User;
-import com.capgemini.boardgames.model.playability.Playability;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class UserRepositoryTest {
     @Test
     public void shouldUpdateUserWhenUpdateMethodCall() {
         //Given
-        UserDto userDto = new UserDto(2, "Janusz", "Nowak", "My motto has changed", "2@mail.com", "password", new Playability());
+        UserDto userDto = new UserDto(2, "Janusz", "Nowak", "My motto has changed", "2@mail.com", "password");
 
         //When
         userRepository.update(userDto);

@@ -31,12 +31,13 @@ public class User {
         this.playability = new Playability();
     }
 
-    public User(long id, String firstname, String lastname, String motto, String email) {
+    public User(long id, String firstname, String lastname, String motto, String email, String password) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.motto = motto;
         this.email = email;
+        this.password = password;
         this.playability = new Playability();
     }
 }

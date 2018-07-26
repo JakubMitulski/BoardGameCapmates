@@ -1,7 +1,6 @@
 package com.capgemini.boardgames.dto;
 
 import com.capgemini.boardgames.model.playability.Playability;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +9,6 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class UserDto {
 
     private long id;
@@ -29,5 +27,15 @@ public class UserDto {
 
 
     public UserDto() {
+    }
+
+    public UserDto(long id, String firstname, String lastname, String motto, String email, String password) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.motto = motto;
+        this.email = email;
+        this.password = password;
+        this.playability = new Playability();
     }
 }

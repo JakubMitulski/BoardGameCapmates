@@ -38,7 +38,7 @@ public class UserProfileServiceTest {
     @Test
     public void shouldEditUserProfileAndReturnDto() {
         //Given
-        UserDto userDto = new UserDto(5, "Stefan", "Stefanowicz", "Witam", "stefan@mail.com", "admin", new Playability());
+        UserDto userDto = new UserDto(5, "Stefan", "Stefanowicz", "Witam", "stefan@mail.com", "admin");
 
         //When
         userProfileService.editUserProfile(userDto);
