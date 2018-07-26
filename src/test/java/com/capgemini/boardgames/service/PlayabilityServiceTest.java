@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.model.User;
+import com.capgemini.boardgames.model.playability.Challenge;
 import com.capgemini.boardgames.repository.GameRepository;
 import com.capgemini.boardgames.repository.StatisticsRepository;
 import com.capgemini.boardgames.repository.UserRepository;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -59,14 +61,16 @@ public class PlayabilityServiceTest {
 
     //START WITH ALL com.capgemini.boardgames TESTS!!!
     @Test
-    public void shouldReturnListOfUsersWithSimilarPlayabilityHours(){
+    public void shouldReturnListOfUsersWithSimilarPlayabilityHoursAndCreateChallenge(){
         //When
         playabilityService.addUserPlayabilityHours(1, "12:00", "15:00");
         playabilityService.addUserPlayabilityHours(2, "13:00", "16:00");
         playabilityService.addUserPlayabilityHours(4, "16:30", "18:00");
         List list = playabilityService.getUsersWithSimilarPlayability(1, "Battleship");
+        Challenge challenge = playabilityService.createChallenge(1, list);
 
         //Then
         assertEquals(1, list.size());
+        assertEquals(2, challenge.getOpponent());
     }
 }

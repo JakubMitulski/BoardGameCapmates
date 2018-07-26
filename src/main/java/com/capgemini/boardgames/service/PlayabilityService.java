@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.model.User;
+import com.capgemini.boardgames.model.playability.Challenge;
 import com.capgemini.boardgames.model.playability.Playability;
 import com.capgemini.boardgames.model.playability.PlayabilityComparator;
 import com.capgemini.boardgames.repository.GameRepository;
@@ -61,5 +62,10 @@ public class PlayabilityService {
             }
         }
         return usersWithSimilarPlayability;
+    }
+
+    public Challenge createChallenge(long userId, List<Long> usersWithSimilarPlayability) {
+        int opponentIndex = (int) (Math.random() * (usersWithSimilarPlayability.size() - 1));
+        return new Challenge(userId, usersWithSimilarPlayability.get(opponentIndex));
     }
 }
