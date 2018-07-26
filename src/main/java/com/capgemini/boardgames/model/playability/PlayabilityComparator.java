@@ -2,18 +2,32 @@ package com.capgemini.boardgames.model.playability;
 
 import java.time.LocalTime;
 
+import static java.time.temporal.ChronoUnit.MINUTES;
+
 public class PlayabilityComparator {
 
-    public boolean compare(Playability firstPlayability, Playability secondPlayability){
+    private LocalTime firstPlayerStartTime;
+    private LocalTime firstPlayerEndTime;
+    private LocalTime secondPlayerStartTime;
+    private LocalTime secondPlayerEndTime;
 
-        LocalTime firstPlayerStartTime = firstPlayability.getStartTime();
-        LocalTime firstPlayerEndTime = firstPlayability.getEndTime();
-        LocalTime secondPlayerStartTime = secondPlayability.getStartTime();
-        LocalTime secondPlayerEndTime = secondPlayability.getEndTime();
+    public boolean compare(Playability firstPlayability, Playability secondPlayability) {
 
-        if (firstPlayerStartTime.compareTo(secondPlayerEndTime) < 0){
-            return firstPlayerEndTime.compareTo(secondPlayerStartTime) > 0;
+        firstPlayerStartTime = firstPlayability.getStartTime();
+        firstPlayerEndTime = firstPlayability.getEndTime();
+        secondPlayerStartTime = secondPlayability.getStartTime();
+        secondPlayerEndTime = secondPlayability.getEndTime();
+
+        if (firstPlayerStartTime.compareTo(secondPlayerEndTime) < 0) {
+            if (firstPlayerEndTime.compareTo(secondPlayerStartTime) > 0) {
+                return isTimeDifferenceBigEnough();
+            }
         }
         return false;
+    }
+
+    private boolean isTimeDifferenceBigEnough() {
+        return MINUTES.between(secondPlayerStartTime, firstPlayerEndTime) > 29 ||
+                MINUTES.between(firstPlayerStartTime, secondPlayerEndTime) > 29;
     }
 }
