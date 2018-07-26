@@ -2,6 +2,7 @@ package com.capgemini.boardgames.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,5 +20,10 @@ public class Aspect {
         long elapsedTime = System.currentTimeMillis() - start;
         LOGGER.info("Method findById execution time: " + elapsedTime + " milliseconds.");
         return output;
+    }
+
+    @Before("execution(* com.capgemini.boardgames.service.*.*(..))")
+    public void logInfo() {
+        LOGGER.info("---ASPEKT DO WALIDACJI---");
     }
 }
