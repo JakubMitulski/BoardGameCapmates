@@ -2,6 +2,7 @@ package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.GameDto;
 import com.capgemini.boardgames.model.Game;
+import com.capgemini.boardgames.repository.GameRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class GameServiceTest {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    GameRepository gameRepository;
 
     @Test
     public void shouldReturnGamesFromUserGamesList() {
@@ -44,7 +48,7 @@ public class GameServiceTest {
     public void shouldAddSpecifiedGameFromUserGames() {
         //When
         gameService.addGameToUserGameList("Monopoly", 2);
-        List<Game> games = gameService.getGamesFromUserGamesList(2);
+        List<Game> games = gameRepository.getUserGames(2);
 
         //Then
         Game resultGame = games.stream().filter(game -> game.getName() == "Monopoly").findAny().get();
@@ -59,7 +63,7 @@ public class GameServiceTest {
         //When
         gameService.addNewGameToSystem(gameDto);
         gameService.addGameToUserGameList("Test", 4);
-        List<Game> userGames = gameService.getGamesFromUserGamesList(4);
+        List<Game> userGames = gameRepository.getUserGames(4);
 
         //Then
         assertEquals("Test", userGames.stream().filter(game -> game.getName() == "Test").findAny().get().getName());

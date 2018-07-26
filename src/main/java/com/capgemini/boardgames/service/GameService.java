@@ -1,12 +1,13 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.GameDto;
-import com.capgemini.boardgames.mapper.GameDtoToGameMapper;
+import com.capgemini.boardgames.mapper.GameDtoMapper;
 import com.capgemini.boardgames.model.Game;
 import com.capgemini.boardgames.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,12 +17,17 @@ public class GameService {
     private GameRepository gameRepository;
 
     @Autowired
-    private GameDtoToGameMapper gameDtoToGameMapper;
+    private GameDtoMapper gameDtoMapper;
 
 
-    public List<Game> getGamesFromUserGamesList(long userId) {
-        //TODO przemapować obiekty z listy na dto przed zwroceniem
-        return gameRepository.getUserGames(userId);
+    public List<GameDto> getGamesFromUserGamesList(long userId) {
+        List<Game> games = gameRepository.getUserGames(userId);
+        List<GameDto> gamesDto = new ArrayList<>();
+
+        for (Game game : games) {
+            gamesDto.add(gameDtoMapper.map(game));
+        }
+        return gamesDto;
     }
 
 
@@ -36,6 +42,6 @@ public class GameService {
 
 
     public void addNewGameToSystem(GameDto gameDto) {
-        gameRepository.addNewGameToGamesCollection(gameDtoToGameMapper.map(gameDto));
+        gameRepository.addNewGameToGamesCollection(gameDtoMapper.map(gameDto));
     }
 }

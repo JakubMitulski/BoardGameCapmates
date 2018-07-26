@@ -1,7 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.UserDto;
-import com.capgemini.boardgames.mapper.UserToUserDtoMapper;
+import com.capgemini.boardgames.mapper.UserDtoMapper;
 import com.capgemini.boardgames.model.User;
 import com.capgemini.boardgames.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ public class UserProfileService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserToUserDtoMapper userToUserDtoMapper;
+    private UserDtoMapper userDtoMapper;
 
 
     public UserProfileService(UserRepository userRepository) {
@@ -23,12 +23,12 @@ public class UserProfileService {
 
     public UserDto getUserProfileByEmail(String email) {
         User user = userRepository.findByEmail(email);
-        return userToUserDtoMapper.map(user);
+        return userDtoMapper.map(user);
     }
 
 
     public UserDto getUserProfileById(long id) {
-        return userToUserDtoMapper.map(userRepository.findById(id));
+        return userDtoMapper.map(userRepository.findById(id));
     }
 
 

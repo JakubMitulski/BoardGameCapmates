@@ -5,7 +5,7 @@ import com.capgemini.boardgames.model.User;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserToUserDtoMapper {
+public class UserDtoMapper {
 
     public UserDto map(User user) {
         UserDto userDto = new UserDto();

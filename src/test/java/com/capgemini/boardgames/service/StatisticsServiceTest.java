@@ -1,6 +1,6 @@
 package com.capgemini.boardgames.service;
 
-import com.capgemini.boardgames.model.statistics.GameLogEntry;
+import com.capgemini.boardgames.dto.GameLogEntryDto;
 import com.capgemini.boardgames.model.statistics.UserLevel;
 import com.capgemini.boardgames.model.statistics.UserStatisticsResultObj;
 import org.junit.Test;
@@ -24,9 +24,9 @@ public class StatisticsServiceTest {
     private GameService gameService;
 
     @Test
-    public void shouldGetUserGamesHistory(){
+    public void shouldGetUserGamesHistory() {
         //When
-        List<GameLogEntry> history = statisticsService.getUserGamesHistory(1);
+        List<GameLogEntryDto> history = statisticsService.getUserGamesHistory(1);
 
         //Then
         assertEquals(3, history.size());
@@ -44,7 +44,7 @@ public class StatisticsServiceTest {
     }
 
     @Test
-    public void shouldGetUserLevelInSpecifiedGame(){
+    public void shouldGetUserLevelInSpecifiedGame() {
         //When
         UserLevel userLevel = statisticsService.getUserLevel(1, 1);
 
@@ -53,7 +53,7 @@ public class StatisticsServiceTest {
     }
 
     @Test
-    public void shouldReturnUserStatistics(){
+    public void shouldReturnUserStatistics() {
         //When
         gameService.addGameToUserGameList("Monopoly", 1);
         gameService.addGameToUserGameList("Battleship", 1);

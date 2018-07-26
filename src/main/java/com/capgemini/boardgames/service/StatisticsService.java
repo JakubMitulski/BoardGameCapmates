@@ -1,5 +1,7 @@
 package com.capgemini.boardgames.service;
 
+import com.capgemini.boardgames.dto.GameLogEntryDto;
+import com.capgemini.boardgames.mapper.GameLogEntryDtoMapper;
 import com.capgemini.boardgames.model.Game;
 import com.capgemini.boardgames.model.statistics.*;
 import com.capgemini.boardgames.repository.GameRepository;
@@ -16,14 +18,20 @@ public class StatisticsService {
 
     @Autowired
     private StatisticsRepository statisticsRepository;
-
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private GameLogEntryDtoMapper gameLogEntryDtoMapper;
 
 
-    public List<GameLogEntry> getUserGamesHistory(long userId) {
-        //TODO dodać DTO listy
-        return statisticsRepository.getUserLogs(userId);
+    public List<GameLogEntryDto> getUserGamesHistory(long userId) {
+        List<GameLogEntry> gameLogEntryList = statisticsRepository.getUserLogs(userId);
+        List<GameLogEntryDto> gameLogEntryListDto = new ArrayList<>();
+
+        for (GameLogEntry gle : gameLogEntryList) {
+            gameLogEntryListDto.add(gameLogEntryDtoMapper.map(gle));
+        }
+        return gameLogEntryListDto;
     }
 
 

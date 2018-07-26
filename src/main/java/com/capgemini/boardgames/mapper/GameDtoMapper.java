@@ -5,7 +5,7 @@ import com.capgemini.boardgames.model.Game;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GameDtoToGameMapper {
+public class GameDtoMapper {
 
     public Game map(GameDto gameDto) {
         Game game = new Game();
@@ -13,6 +13,17 @@ public class GameDtoToGameMapper {
         game.setName(gameDto.getName());
         game.setMinPlayerNumber(gameDto.getMinPlayerNumber());
         game.setMaxPlayerNumber(gameDto.getMaxPlayerNumber());
+        game.setSubscribersList(gameDto.getSubscribersList());
         return game;
+    }
+
+    public GameDto map(Game game) {
+        GameDto gameDto = new GameDto();
+        gameDto.setId(game.getId());
+        gameDto.setName(game.getName());
+        gameDto.setMinPlayerNumber(game.getMinPlayerNumber());
+        gameDto.setMaxPlayerNumber(game.getMaxPlayerNumber());
+        gameDto.setSubscribersList(game.getSubscribersList());
+        return gameDto;
     }
 }
