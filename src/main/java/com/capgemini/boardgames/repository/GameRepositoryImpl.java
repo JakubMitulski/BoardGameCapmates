@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class GameRepositoryImpl implements GameRepository {
 
     private Set<Game> gamesCollection;
-    public static AtomicLong counter = new AtomicLong(1);
+    public static final AtomicLong counter = new AtomicLong(1);
 
     public GameRepositoryImpl() {
         gamesCollection = new HashSet<>();

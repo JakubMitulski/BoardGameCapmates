@@ -21,21 +21,17 @@ public class RankingPositionManager {
             }
         }
 
-
         for (Map.Entry<Long, Long> entry : map.entrySet()) {
             resultList.add(new UserRankingResultObj(entry.getKey(), entry.getValue()));
         }
 
-
         RankingResultComparator resultComparator = new RankingResultComparator();
         Collections.sort(resultList, resultComparator);
 
-        return (resultList
-                .indexOf(resultList
-                        .stream()
-                        .filter(userResult -> userResult.getUserId() == userId)
-                        .findAny().get())) + 1;
-
+        return (resultList.indexOf(resultList
+                .stream()
+                .filter(userResult -> userResult.getUserId() == userId)
+                .findAny().get())) + 1;
     }
 }
 

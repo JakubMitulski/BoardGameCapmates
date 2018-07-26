@@ -38,6 +38,7 @@ public class UserProfileService {
         user.setLastname(userDto.getLastname());
         user.setEmail(userDto.getEmail());
         user.setMotto(userDto.getMotto());
+        user.setPassword(userDto.getPassword());
         user.setPlayability(userDto.getPlayability());
     }
 }

@@ -1,5 +1,6 @@
 package com.capgemini.boardgames.repository;
 
+import com.capgemini.boardgames.dto.UserDto;
 import com.capgemini.boardgames.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UserRepositoryImpl implements UserRepository {
 
     private List<User> usersList;
-    public static AtomicLong counter = new AtomicLong(1);
+    public static final AtomicLong counter = new AtomicLong(1);
 
     public UserRepositoryImpl() {
         usersList = new ArrayList<>();
@@ -47,12 +48,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void update(User user) {
-        User userToSave = findById(user.getId());
-        userToSave.setFirstname(user.getFirstname());
-        userToSave.setLastname(user.getLastname());
-        userToSave.setEmail(user.getEmail());
-        userToSave.setPlayability(user.getPlayability());
-        userToSave.setMotto(user.getMotto());
+    public void update(UserDto userDto) {
+        User userToSave = findById(userDto.getId());
+        userToSave.setFirstname(userDto.getFirstname());
+        userToSave.setLastname(userDto.getLastname());
+        userToSave.setEmail(userDto.getEmail());
+        userToSave.setPlayability(userDto.getPlayability());
+        userToSave.setMotto(userDto.getMotto());
     }
 }
