@@ -4,20 +4,28 @@ import com.capgemini.boardgames.model.playability.Playability;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 public class User {
 
     private long id;
+    @NotNull
     private String firstname;
+    @NotNull
     private String lastname;
+    @NotNull
     private String motto;
+    @Email
     private String email;
+    @Size(min = 4, max = 255, message = "Password must be at least 4 characters long")
     private String password;
+
     private Playability playability;
+
 
     public User() {
         this.playability = new Playability();
