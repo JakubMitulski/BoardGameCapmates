@@ -1,5 +1,6 @@
 package com.capgemini.boardgames.service;
 
+import com.capgemini.boardgames.dto.GameByRequestDTO;
 import com.capgemini.boardgames.dto.GameDto;
 import com.capgemini.boardgames.mapper.GameDtoMapper;
 import com.capgemini.boardgames.model.Game;
@@ -49,5 +50,23 @@ public class GameService {
 
     public void addNewGameToSystem(GameDto gameDto) {
         gameRepository.addNewGameToGamesCollection(gameDtoMapper.map(gameDto));
+    }
+
+    public List<GameDto> findGamesByParams(GameByRequestDTO gameByRequestDTO) {
+        String gameName = gameByRequestDTO.getGameName();
+        Integer minPlayersNumber = gameByRequestDTO.getMinPlayersNumber();
+        Integer maxPlayerNumber = gameByRequestDTO.getMaxPlayerNumber();
+        List<Long> subscribersList = gameByRequestDTO.getSubscribersList();
+
+        List<Game> resultGameList = new ArrayList<>();
+
+        if (gameName != null){
+            gameRepository.getGameByName(gameName);
+            //TODO zaimplementowac getgamebyname w repo
+        }
+        //stworzyc ify z warunkami, w kazdym ifie rezult dodaje cos do listywynikowej
+
+
+        return null;
     }
 }

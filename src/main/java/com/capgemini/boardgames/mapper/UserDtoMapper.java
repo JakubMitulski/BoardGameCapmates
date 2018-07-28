@@ -13,6 +13,7 @@ public class UserDtoMapper {
         userDto.setFirstname(user.getFirstname());
         userDto.setLastname(user.getLastname());
         userDto.setEmail(user.getEmail());
+        userDto.setPassword(user.getPassword());
         userDto.setMotto(user.getMotto());
         userDto.setPlayability(user.getPlayability());
         return userDto;

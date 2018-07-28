@@ -20,4 +20,6 @@ public interface GameRepository {
     List<Long> getUsersWithSpecifiedGame(String gameName);
 
     boolean checkIfGamesCollectionContainsGame(String gameName);
+
+    Game getGameByName(String gameName);
 }
