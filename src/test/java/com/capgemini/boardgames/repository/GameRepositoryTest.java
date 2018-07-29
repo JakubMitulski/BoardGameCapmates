@@ -32,7 +32,7 @@ public class GameRepositoryTest {
     @Test
     public void shouldReturnGameObjectWhenFindGameByNameMethodCall(){
         //When
-        Game chess = gameRepository.findGameByName("Chess");
+        Game chess = gameRepository.getGameByName("Chess");
 
         //Then
         assertEquals("Chess", chess.getName());
@@ -64,7 +64,7 @@ public class GameRepositoryTest {
     public void shouldAddNewGameToGamesCollection(){
         //When
         gameRepository.addNewGameToGamesCollection(new Game(5, "Cards", 1, 5));
-        Game cards = gameRepository.findGameByName("Cards");
+        Game cards = gameRepository.getGameByName("Cards");
 
         //Then
         assertEquals("Cards", cards.getName());

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 @Repository
 public class GameRepositoryImpl implements GameRepository {
@@ -14,10 +15,22 @@ public class GameRepositoryImpl implements GameRepository {
 
     public GameRepositoryImpl() {
         gamesCollection = new HashSet<>();
-        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Battleship", 2, 2));
-        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Chess", 2, 2));
+
+        Game battleship = new Game(counter.getAndIncrement(), "Battleship", 2, 2);
+        ArrayList<Long> subs = new ArrayList<>();
+        subs.add(1L);
+        subs.add(2L);
+        battleship.setSubscribersList(subs);
+        this.gamesCollection.add(battleship);
+
+        Game chess = new Game(counter.getAndIncrement(), "Chess", 2, 2);
+        ArrayList<Long> subs2 = new ArrayList<>();
+        subs2.add(1L);
+        chess.setSubscribersList(subs2);
+        this.gamesCollection.add(chess);
+
         this.gamesCollection.add(new Game(counter.getAndIncrement(), "Monopoly", 2, 4));
-        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Scrabble", 2, 4));
+        this.gamesCollection.add(new Game(counter.getAndIncrement(), "Scrabble", 4, 4));
     }
 
     @Override
@@ -35,26 +48,23 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public Game findGameByName(String gameName) {
+    public Game getGameByName(String gameName) {
         Optional<Game> optionalGame = gamesCollection
                 .stream()
-                .filter(game -> game.getName() == gameName)
+                .filter(game -> game.getName().equals(gameName))
                 .findAny();
 
-        if (optionalGame.isPresent()) {
-            return optionalGame.get();
-        }
-        return null;
+        return optionalGame.orElse(null);
     }
 
     @Override
     public void addGame(String gameName, long userId) {
-        findGameByName(gameName).getSubscribersList().add(userId);
+        getGameByName(gameName).getSubscribersList().add(userId);
     }
 
     @Override
     public void removeGame(String gameName, long userId) {
-        findGameByName(gameName).getSubscribersList().remove(userId);
+        getGameByName(gameName).getSubscribersList().remove(userId);
     }
 
     @Override
@@ -64,11 +74,34 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public List<Long> getUsersWithSpecifiedGame(String gameName) {
-        return findGameByName(gameName).getSubscribersList();
+        return getGameByName(gameName).getSubscribersList();
     }
 
     @Override
-    public boolean checkIfGamesCollectionContainsGame(String gameName){
-        return gamesCollection.stream().filter(game -> game.getName() == gameName).findAny().isPresent();
+    public boolean checkIfGamesCollectionContainsGame(String gameName) {
+        return gamesCollection.stream().anyMatch(game -> game.getName() == gameName);
+    }
+
+    @Override
+    public List<Game> getGameByMinPlayersNumber(Integer minPlayersNumber) {
+        return gamesCollection.stream().filter(game -> game.getMinPlayerNumber() >= minPlayersNumber).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Game> getGameByMaxPlayersNumber(Integer maxPlayerNumber) {
+        return gamesCollection.stream().filter(game -> game.getMaxPlayerNumber() <= maxPlayerNumber).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Game> getGamesOfSubscribers(List<Long> playersList) {
+        List<Game> result = new ArrayList<>();
+
+        for (Game game : gamesCollection) {
+            if (game.getSubscribersList().containsAll(playersList)) {
+                result.add(game);
+            }
+        }
+
+        return result;
     }
 }

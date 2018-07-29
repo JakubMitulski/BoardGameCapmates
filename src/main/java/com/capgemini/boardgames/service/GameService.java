@@ -14,12 +14,14 @@ import java.util.List;
 @Service
 public class GameService {
 
-    @Autowired
     private GameRepository gameRepository;
 
     @Autowired
     private GameDtoMapper gameDtoMapper;
 
+    public GameService(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
 
     public List<GameDto> getGamesFromUserGamesList(long userId) {
         List<Game> games = gameRepository.getUserGames(userId);
@@ -58,15 +60,29 @@ public class GameService {
         Integer maxPlayerNumber = gameByRequestDTO.getMaxPlayerNumber();
         List<Long> subscribersList = gameByRequestDTO.getSubscribersList();
 
-        List<Game> resultGameList = new ArrayList<>();
+        List<Game> gameList = new ArrayList<>();
+        List<GameDto> gameDtoList = new ArrayList<>();
 
         if (gameName != null){
-            gameRepository.getGameByName(gameName);
-            //TODO zaimplementowac getgamebyname w repo
+            gameList.add(gameRepository.getGameByName(gameName));
         }
-        //stworzyc ify z warunkami, w kazdym ifie rezult dodaje cos do listywynikowej
+        if (minPlayersNumber != null){
+            List<Game> games = gameRepository.getGameByMinPlayersNumber(minPlayersNumber);
+            gameList.addAll(games);
+        }
+        if (maxPlayerNumber != null){
+            List<Game> games = gameRepository.getGameByMaxPlayersNumber(maxPlayerNumber);
+            gameList.addAll(games);
+        }
+        if (subscribersList != null && !subscribersList.isEmpty()){
+            List<Game> games = gameRepository.getGamesOfSubscribers(subscribersList);
+            gameList.addAll(games);
+        }
 
+        for (Game game : gameList) {
+            gameDtoList.add(gameDtoMapper.map(game));
+        }
 
-        return null;
+        return gameDtoList;
     }
 }

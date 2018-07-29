@@ -3,13 +3,12 @@ package com.capgemini.boardgames.repository;
 import com.capgemini.boardgames.model.Game;
 
 import java.util.List;
-import java.util.Set;
 
 public interface GameRepository {
 
     List<Game> getUserGames(long id);
 
-    Game findGameByName(String gameName);
+    Game getGameByName(String gameName);
 
     void addGame(String gameName, long userId);
 
@@ -21,5 +20,9 @@ public interface GameRepository {
 
     boolean checkIfGamesCollectionContainsGame(String gameName);
 
-    Game getGameByName(String gameName);
+    List<Game> getGameByMinPlayersNumber(Integer minPlayersNumber);
+
+    List<Game> getGameByMaxPlayersNumber(Integer maxPlayerNumber);
+
+    List<Game> getGamesOfSubscribers(List<Long> subscribersList);
 }
