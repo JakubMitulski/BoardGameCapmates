@@ -22,6 +22,9 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
         this.historyLogsCollection.add(new GameLogEntry(2, 3, 1, 140));
         this.historyLogsCollection.add(new GameLogEntry(3, 3, 10, 140));
         this.historyLogsCollection.add(new GameLogEntry(4, 3, 1, 140));
+        this.historyLogsCollection.add(new GameLogEntry(7, 1, 10, 160));
+        this.historyLogsCollection.add(new GameLogEntry(7, 3, 1, 160));
+
     }
 
     @Override

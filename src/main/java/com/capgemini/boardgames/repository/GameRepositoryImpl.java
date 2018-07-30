@@ -61,7 +61,7 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Game getGameByName(String gameName) {
-        Optional<Game> optionalGame = tempGamesCollection
+        Optional<Game> optionalGame = gamesCollection
                 .stream()
                 .filter(game -> game.getName().equals(gameName))
                 .findAny();

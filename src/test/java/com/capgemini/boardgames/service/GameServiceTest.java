@@ -26,7 +26,7 @@ public class GameServiceTest {
     @Test
     public void shouldReturnGamesFromUserGamesList() {
         //When
-        List games = gameService.getGamesFromUserGamesList(6);
+        List games = gameService.getGamesFromUserGamesList(7);
 
         //Then
         assertEquals(0, games.size());
@@ -38,9 +38,9 @@ public class GameServiceTest {
         GameDto gameDto = new GameDto(3, "Monopoly", 2, 2);
 
         //When
-        gameService.addGameToUserGameList(gameDto, 5);
-        gameService.removeGameFromUserGameList("Monopoly", 5);
-        List games = gameService.getGamesFromUserGamesList(5);
+        gameService.addGameToUserGameList(gameDto, 7);
+        gameService.removeGameFromUserGameList("Monopoly", 7);
+        List games = gameService.getGamesFromUserGamesList(7);
 
         //Then
         assertEquals(0, games.size());

@@ -33,7 +33,7 @@ public class StatisticsRepositoryTest {
         List<GameLogEntry> gameLogs = statisticsRepository.getGameLogs(3);
 
         //Then
-        assertEquals(4, gameLogs.size());
+        assertEquals(5, gameLogs.size());
     }
 
 }

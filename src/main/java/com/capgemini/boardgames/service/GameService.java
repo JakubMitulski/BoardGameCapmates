@@ -15,6 +15,7 @@ import java.util.Set;
 @Service
 public class GameService {
 
+    @Autowired
     private GameRepository gameRepository;
 
     @Autowired

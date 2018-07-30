@@ -23,6 +23,8 @@ public class UserRepositoryImpl implements UserRepository {
         this.usersList.add(new User(counter.getAndIncrement(), "Marian", "Mariusz", "Games freak", "3@mail.com", "password"));
         this.usersList.add(new User(counter.getAndIncrement(), "Wacław", "Wacek", "Winner", "4@mail.com", "password"));
         this.usersList.add(new User(counter.getAndIncrement(), "Test", "Testowy", "Test", "test@mail.com", "password"));
+        this.usersList.add(new User(counter.getAndIncrement(), "User", "User", "User", "user@mail.com", "password"));
+        this.usersList.add(new User(counter.getAndIncrement(), "7", "7", "7", "7@mail.com", "password"));
     }
 
     @Override

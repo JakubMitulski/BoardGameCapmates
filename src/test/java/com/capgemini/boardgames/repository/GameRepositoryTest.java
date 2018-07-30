@@ -21,8 +21,8 @@ public class GameRepositoryTest {
     @Test
     public void shouldReturnListOfUserGamesByGivenUserId() {
         //When
-        gameRepository.addGame("Monopoly", 4);
-        List<Game> userGames = gameRepository.getUserGames(4);
+        gameRepository.addGame("Monopoly", 6);
+        List<Game> userGames = gameRepository.getUserGames(6);
 
         //Then
         assertEquals(1, userGames.size());
@@ -41,8 +41,8 @@ public class GameRepositoryTest {
     @Test
     public void shouldAddSpecifiedGameToUserGames(){
         //When
-        gameRepository.addGame("Scrabble", 2);
-        List<Game> userGames = gameRepository.getUserGames(2);
+        gameRepository.addGame("Scrabble", 4);
+        List<Game> userGames = gameRepository.getUserGames(4);
 
         //Then
         assertEquals(1, userGames.size());
@@ -73,10 +73,10 @@ public class GameRepositoryTest {
     @Test
     public void shouldGetListOfUsersWhoOwnedSpecifiedGameInCollection(){
         //When
-        gameRepository.addGame("Battleship", 1);
-        gameRepository.addGame("Battleship", 2);
-        gameRepository.addGame("Battleship", 3);
-        List<Long> battleship = gameRepository.getUsersWithSpecifiedGame("Battleship");
+        gameRepository.addGame("Monopoly", 1);
+        gameRepository.addGame("Monopoly", 2);
+        gameRepository.addGame("Monopoly", 3);
+        List<Long> battleship = gameRepository.getUsersWithSpecifiedGame("Monopoly");
 
         //Then
         assertEquals(3, battleship.size());

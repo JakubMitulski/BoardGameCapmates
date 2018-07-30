@@ -41,7 +41,7 @@ public class StatisticsServiceTest {
 
         //Then
         assertEquals(1, rankingPosU1);
-        assertEquals(3, rankingPosU4);
+        assertEquals(4, rankingPosU4);
     }
 
     @Test
@@ -60,13 +60,11 @@ public class StatisticsServiceTest {
         GameDto gameDto3 = new GameDto(3, "Monopoly", 2, 2);
 
         //When
-        gameService.addGameToUserGameList(gameDto1, 1);
-        gameService.addGameToUserGameList(gameDto3, 1);
-        List<UserStatisticsResultObj> statistics = statisticsService.getUserStatistics(1);
+        gameService.addGameToUserGameList(gameDto1, 7);
+        gameService.addGameToUserGameList(gameDto3, 7);
+        List<UserStatisticsResultObj> statistics = statisticsService.getUserStatistics(7);
 
         //Then
         assertEquals(2, statistics.size());
     }
-
-
 }
