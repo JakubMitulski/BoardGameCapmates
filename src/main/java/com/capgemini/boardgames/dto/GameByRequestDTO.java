@@ -11,6 +11,6 @@ public class GameByRequestDTO {
 
     private String gameName;
     private Integer minPlayersNumber;
-    private Integer maxPlayerNumber;
+    private Integer maxPlayersNumber;
     private List<Long> subscribersList;
 }

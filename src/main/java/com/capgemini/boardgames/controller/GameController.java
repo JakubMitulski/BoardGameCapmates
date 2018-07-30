@@ -29,6 +29,7 @@ public class GameController {
         }
 
         List<GameDto> gamesList = gameService.findGamesByParams(gameByRequestDTO);
+
         return ResponseEntity.ok(gamesList);
     }
 }

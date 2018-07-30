@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class GameService {
@@ -42,7 +43,7 @@ public class GameService {
     public void addGameToUserGameList(GameDto gameDto, long userId) {
         boolean contains = gameRepository.checkIfGamesCollectionContainsGame(gameDto.getName());
 
-        if (!contains){
+        if (!contains) {
             addNewGameToSystem(gameDto);
         }
 
@@ -57,31 +58,31 @@ public class GameService {
     public List<GameDto> findGamesByParams(GameByRequestDTO gameByRequestDTO) {
         String gameName = gameByRequestDTO.getGameName();
         Integer minPlayersNumber = gameByRequestDTO.getMinPlayersNumber();
-        Integer maxPlayerNumber = gameByRequestDTO.getMaxPlayerNumber();
+        Integer maxPlayersNumber = gameByRequestDTO.getMaxPlayersNumber();
         List<Long> subscribersList = gameByRequestDTO.getSubscribersList();
 
-        List<Game> gameList = new ArrayList<>();
         List<GameDto> gameDtoList = new ArrayList<>();
 
-        if (gameName != null){
-            gameList.add(gameRepository.getGameByName(gameName));
+        if (gameName != null) {
+            gameRepository.filterGameByName(gameName);
         }
-        if (minPlayersNumber != null){
-            List<Game> games = gameRepository.getGameByMinPlayersNumber(minPlayersNumber);
-            gameList.addAll(games);
+        if (minPlayersNumber != null) {
+            gameRepository.filterGameByMinPlayersNumber(minPlayersNumber);
         }
-        if (maxPlayerNumber != null){
-            List<Game> games = gameRepository.getGameByMaxPlayersNumber(maxPlayerNumber);
-            gameList.addAll(games);
+        if (maxPlayersNumber != null) {
+            gameRepository.filterGameByMaxPlayersNumber(maxPlayersNumber);
         }
-        if (subscribersList != null && !subscribersList.isEmpty()){
-            List<Game> games = gameRepository.getGamesOfSubscribers(subscribersList);
-            gameList.addAll(games);
+        if (subscribersList != null && !subscribersList.isEmpty()) {
+            gameRepository.filterGamesOfSubscribers(subscribersList);
         }
 
-        for (Game game : gameList) {
+        Set<Game> gameSet = gameRepository.getTempGamesCollection();
+
+        for (Game game : gameSet) {
             gameDtoList.add(gameDtoMapper.map(game));
         }
+
+        gameRepository.clearTempGamesCollection();
 
         return gameDtoList;
     }

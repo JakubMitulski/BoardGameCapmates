@@ -26,7 +26,7 @@ public class UserProfileController {
     }
 
     @PutMapping(path = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<UserDto> updateOwner(@RequestBody @Valid UserDto userDto, BindingResult bindingResult) {
+    public ResponseEntity<UserDto> editUserProfile(@RequestBody @Valid UserDto userDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();

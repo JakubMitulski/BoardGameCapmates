@@ -11,10 +11,14 @@ import java.util.stream.Collectors;
 public class GameRepositoryImpl implements GameRepository {
 
     private Set<Game> gamesCollection;
+    private Set<Game> tempGamesCollection;
+    private boolean isBeforeInit = true;
+
     public static final AtomicLong counter = new AtomicLong(1);
 
     public GameRepositoryImpl() {
         gamesCollection = new HashSet<>();
+        tempGamesCollection = new HashSet<>();
 
         Game battleship = new Game(counter.getAndIncrement(), "Battleship", 2, 2);
         ArrayList<Long> subs = new ArrayList<>();
@@ -38,7 +42,11 @@ public class GameRepositoryImpl implements GameRepository {
         List<Game> userGames = new ArrayList<>();
 
         for (Game game : gamesCollection) {
-            Optional<Long> optionalId = game.getSubscribersList().stream().filter(id -> id == userId).findAny();
+            Optional<Long> optionalId = game
+                    .getSubscribersList()
+                    .stream()
+                    .filter(id -> id == userId)
+                    .findAny();
 
             if (optionalId.isPresent()) {
                 userGames.add(game);
@@ -49,17 +57,18 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Game getGameByName(String gameName) {
-        Optional<Game> optionalGame = gamesCollection
+        Optional<Game> optionalGame = tempGamesCollection
                 .stream()
                 .filter(game -> game.getName().equals(gameName))
                 .findAny();
-
         return optionalGame.orElse(null);
     }
 
     @Override
     public void addGame(String gameName, long userId) {
-        getGameByName(gameName).getSubscribersList().add(userId);
+        getGameByName(gameName)
+                .getSubscribersList()
+                .add(userId);
     }
 
     @Override
@@ -83,25 +92,65 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public List<Game> getGameByMinPlayersNumber(Integer minPlayersNumber) {
-        return gamesCollection.stream().filter(game -> game.getMinPlayerNumber() >= minPlayersNumber).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Game> getGameByMaxPlayersNumber(Integer maxPlayerNumber) {
-        return gamesCollection.stream().filter(game -> game.getMaxPlayerNumber() <= maxPlayerNumber).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<Game> getGamesOfSubscribers(List<Long> playersList) {
-        List<Game> result = new ArrayList<>();
-
-        for (Game game : gamesCollection) {
-            if (game.getSubscribersList().containsAll(playersList)) {
-                result.add(game);
-            }
+    public Set<Game> filterGameByName(String gameName) {
+        if (tempGamesCollection.isEmpty() && isBeforeInit) {
+            tempGamesCollection = gamesCollection;
+            isBeforeInit = false;
         }
+        tempGamesCollection = tempGamesCollection
+                .stream()
+                .filter(game -> game.getName().equals(gameName))
+                .collect(Collectors.toSet());
+        return tempGamesCollection;
+    }
 
-        return result;
+    @Override
+    public Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber) {
+        if (tempGamesCollection.isEmpty() && isBeforeInit) {
+            tempGamesCollection = gamesCollection;
+            isBeforeInit = false;
+        }
+        tempGamesCollection = tempGamesCollection
+                .stream()
+                .filter(game -> game.getMinPlayerNumber() <= minPlayersNumber)
+                .collect(Collectors.toSet());
+        return tempGamesCollection;
+    }
+
+    @Override
+    public Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber) {
+        if (tempGamesCollection.isEmpty() && isBeforeInit) {
+            tempGamesCollection = gamesCollection;
+            isBeforeInit = false;
+        }
+        tempGamesCollection = tempGamesCollection
+                .stream()
+                .filter(game -> game.getMaxPlayerNumber() >= maxPlayerNumber)
+                .collect(Collectors.toSet());
+        return tempGamesCollection;
+    }
+
+    @Override
+    public Set<Game> filterGamesOfSubscribers(List<Long> playersList) {
+        if (tempGamesCollection.isEmpty() && isBeforeInit) {
+            tempGamesCollection = gamesCollection;
+            isBeforeInit = false;
+        }
+        tempGamesCollection = tempGamesCollection
+                .stream()
+                .filter(game -> game.getSubscribersList().containsAll(playersList))
+                .collect(Collectors.toSet());
+        return tempGamesCollection;
+    }
+
+    @Override
+    public Set<Game> getTempGamesCollection() {
+        return this.tempGamesCollection;
+    }
+
+    @Override
+    public void clearTempGamesCollection() {
+        tempGamesCollection.clear();
+        isBeforeInit = true;
     }
 }

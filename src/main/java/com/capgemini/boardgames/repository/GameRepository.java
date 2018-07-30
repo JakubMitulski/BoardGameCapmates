@@ -3,6 +3,7 @@ package com.capgemini.boardgames.repository;
 import com.capgemini.boardgames.model.Game;
 
 import java.util.List;
+import java.util.Set;
 
 public interface GameRepository {
 
@@ -20,9 +21,15 @@ public interface GameRepository {
 
     boolean checkIfGamesCollectionContainsGame(String gameName);
 
-    List<Game> getGameByMinPlayersNumber(Integer minPlayersNumber);
+    Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber);
 
-    List<Game> getGameByMaxPlayersNumber(Integer maxPlayerNumber);
+    Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber);
 
-    List<Game> getGamesOfSubscribers(List<Long> subscribersList);
+    Set<Game> filterGamesOfSubscribers(List<Long> subscribersList);
+
+    Set<Game> filterGameByName(String gameName);
+
+    Set<Game> getTempGamesCollection();
+
+    void clearTempGamesCollection();
 }
