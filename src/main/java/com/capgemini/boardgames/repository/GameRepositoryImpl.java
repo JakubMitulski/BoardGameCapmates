@@ -93,10 +93,7 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Set<Game> filterGameByName(String gameName) {
-        if (tempGamesCollection.isEmpty() && isBeforeInit) {
-            tempGamesCollection = gamesCollection;
-            isBeforeInit = false;
-        }
+        checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getName().equals(gameName))
@@ -106,10 +103,7 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber) {
-        if (tempGamesCollection.isEmpty() && isBeforeInit) {
-            tempGamesCollection = gamesCollection;
-            isBeforeInit = false;
-        }
+        checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getMinPlayerNumber() <= minPlayersNumber)
@@ -119,10 +113,7 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber) {
-        if (tempGamesCollection.isEmpty() && isBeforeInit) {
-            tempGamesCollection = gamesCollection;
-            isBeforeInit = false;
-        }
+        checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getMaxPlayerNumber() >= maxPlayerNumber)
@@ -132,15 +123,19 @@ public class GameRepositoryImpl implements GameRepository {
 
     @Override
     public Set<Game> filterGamesOfSubscribers(List<Long> playersList) {
-        if (tempGamesCollection.isEmpty() && isBeforeInit) {
-            tempGamesCollection = gamesCollection;
-            isBeforeInit = false;
-        }
+        checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getSubscribersList().containsAll(playersList))
                 .collect(Collectors.toSet());
         return tempGamesCollection;
+    }
+
+    private void checkEntryConditions() {
+        if (tempGamesCollection.isEmpty() && isBeforeInit) {
+            tempGamesCollection = gamesCollection;
+            isBeforeInit = false;
+        }
     }
 
     @Override
