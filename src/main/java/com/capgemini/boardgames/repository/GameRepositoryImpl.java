@@ -1,5 +1,9 @@
 package com.capgemini.boardgames.repository;
 
+import com.capgemini.boardgames.exception.NoSuchGameMaxPlayerException;
+import com.capgemini.boardgames.exception.NoSuchGameMinPlayerException;
+import com.capgemini.boardgames.exception.NoSuchGameNameException;
+import com.capgemini.boardgames.exception.NoSuchGameSubscribersException;
 import com.capgemini.boardgames.model.Game;
 import org.springframework.stereotype.Repository;
 
@@ -92,42 +96,62 @@ public class GameRepositoryImpl implements GameRepository {
     }
 
     @Override
-    public Set<Game> filterGameByName(String gameName) {
+    public Set<Game> filterGameByName(String gameName) throws NoSuchGameNameException {
         checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getName().equals(gameName))
                 .collect(Collectors.toSet());
+
+        if (tempGamesCollection.isEmpty()) {
+            isBeforeInit = true;
+            throw new NoSuchGameNameException();
+        }
         return tempGamesCollection;
     }
 
     @Override
-    public Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber) {
+    public Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber) throws NoSuchGameMinPlayerException {
         checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getMinPlayerNumber() <= minPlayersNumber)
                 .collect(Collectors.toSet());
+
+        if (tempGamesCollection.isEmpty()) {
+            isBeforeInit = true;
+            throw new NoSuchGameMinPlayerException();
+        }
         return tempGamesCollection;
     }
 
     @Override
-    public Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber) {
+    public Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber) throws NoSuchGameMaxPlayerException {
         checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getMaxPlayerNumber() >= maxPlayerNumber)
                 .collect(Collectors.toSet());
+
+        if (tempGamesCollection.isEmpty()) {
+            isBeforeInit = true;
+            throw new NoSuchGameMaxPlayerException();
+        }
         return tempGamesCollection;
     }
 
     @Override
-    public Set<Game> filterGamesOfSubscribers(List<Long> playersList) {
+    public Set<Game> filterGamesOfSubscribers(List<Long> playersList) throws NoSuchGameSubscribersException {
         checkEntryConditions();
         tempGamesCollection = tempGamesCollection
                 .stream()
                 .filter(game -> game.getSubscribersList().containsAll(playersList))
                 .collect(Collectors.toSet());
+
+        if (tempGamesCollection.isEmpty()) {
+            isBeforeInit = true;
+            throw new NoSuchGameSubscribersException();
+        }
         return tempGamesCollection;
     }
 

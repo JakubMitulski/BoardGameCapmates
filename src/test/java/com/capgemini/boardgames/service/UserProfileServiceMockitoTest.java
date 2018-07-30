@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.mapper.UserDtoMapper;
 import com.capgemini.boardgames.model.playability.Playability;
 import com.capgemini.boardgames.repository.UserRepository;
@@ -39,7 +40,7 @@ public class UserProfileServiceMockitoTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws NoSuchUserException {
         MockitoAnnotations.initMocks(this);
         Mockito.when(userProfileService.getUserProfileById(1)).thenReturn(userDto);
         Mockito.when(userDtoMapper.map(userRepository.findById(1))).thenReturn(userDto);
@@ -47,7 +48,7 @@ public class UserProfileServiceMockitoTest {
 
 
     @Test
-    public void shouldFindUserProfileByIdAndReturnDto() {
+    public void shouldFindUserProfileByIdAndReturnDto() throws NoSuchUserException {
         //When
         UserDto userDto = userProfileService.getUserProfileById(expectedId);
 

@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.aop;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.model.playability.Playability;
 import com.capgemini.boardgames.repository.UserRepository;
 import com.capgemini.boardgames.service.UserProfileService;
@@ -21,7 +22,7 @@ public class AspectServiceTest {
     UserProfileService userProfileService;
 
     @Test
-    public void shouldTest() {
+    public void shouldTest() throws NoSuchUserException {
         userRepository.findById(1);
     }
 

@@ -55,7 +55,7 @@ public class GameService {
         gameRepository.addNewGameToGamesCollection(gameDtoMapper.map(gameDto));
     }
 
-    public List<GameDto> findGamesByParams(GameByRequestDTO gameByRequestDTO) {
+    public List<GameDto> findGamesByParams(GameByRequestDTO gameByRequestDTO) throws Exception {
         String gameName = gameByRequestDTO.getGameName();
         Integer minPlayersNumber = gameByRequestDTO.getMinPlayersNumber();
         Integer maxPlayersNumber = gameByRequestDTO.getMaxPlayersNumber();

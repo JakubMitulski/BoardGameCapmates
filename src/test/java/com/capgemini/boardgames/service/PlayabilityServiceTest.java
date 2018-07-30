@@ -1,5 +1,6 @@
 package com.capgemini.boardgames.service;
 
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.model.User;
 import com.capgemini.boardgames.model.playability.Challenge;
 import com.capgemini.boardgames.repository.UserRepository;
@@ -26,7 +27,7 @@ public class PlayabilityServiceTest {
 
 
     @Test
-    public void shouldAddUserPlayabilityHours() {
+    public void shouldAddUserPlayabilityHours() throws NoSuchUserException {
         //When
         playabilityService.addUserPlayabilityHours(1, "12:00", "15:00");
         User user = userRepository.findById(1);
@@ -36,7 +37,7 @@ public class PlayabilityServiceTest {
     }
 
     @Test
-    public void shouldEditUserPlayabilityHours() {
+    public void shouldEditUserPlayabilityHours() throws NoSuchUserException {
         //When
         playabilityService.editUserPlayabilityHours(1, "11:00", "15:00", "Edited");
         User user = userRepository.findById(1);
@@ -46,7 +47,7 @@ public class PlayabilityServiceTest {
     }
 
     @Test
-    public void shouldRemoveUserPlayabilityHours() {
+    public void shouldRemoveUserPlayabilityHours() throws NoSuchUserException {
         //When
         playabilityService.removeUserPlayabilityHours(1, "Removed");
         User user = userRepository.findById(1);
@@ -58,7 +59,7 @@ public class PlayabilityServiceTest {
 
     @Test
     //START WITH ALL com.capgemini.boardgames TESTS!!!
-    public void shouldReturnListOfUsersWithSimilarPlayabilityHoursAndCreateChallenge() {
+    public void shouldReturnListOfUsersWithSimilarPlayabilityHoursAndCreateChallenge() throws NoSuchUserException {
         //When
         playabilityService.addUserPlayabilityHours(1, "12:00", "15:00");
         playabilityService.addUserPlayabilityHours(2, "14:30", "16:00");

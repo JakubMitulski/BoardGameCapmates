@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.mapper.UserDtoMapper;
 import com.capgemini.boardgames.model.User;
 import com.capgemini.boardgames.repository.UserRepository;
@@ -27,12 +28,12 @@ public class UserProfileService {
     }
 
 
-    public UserDto getUserProfileById(long id) {
+    public UserDto getUserProfileById(long id) throws NoSuchUserException {
         return userDtoMapper.map(userRepository.findById(id));
     }
 
 
-    public void editUserProfile(UserDto userDto) {
+    public void editUserProfile(UserDto userDto) throws NoSuchUserException {
         User user = userRepository.findById(userDto.getId());
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());

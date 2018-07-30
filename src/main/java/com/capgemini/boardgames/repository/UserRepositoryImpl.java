@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.repository;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -36,19 +37,20 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findById(long id) {
+    public User findById(long id) throws NoSuchUserException {
         Optional<User> optionalUser = usersList
                 .stream()
                 .filter(user -> user.getId() == id)
                 .findAny();
         if (optionalUser.isPresent()) {
             return optionalUser.get();
+        } else {
+            throw new NoSuchUserException();
         }
-        return null;
     }
 
     @Override
-    public void update(UserDto userDto) {
+    public void update(UserDto userDto) throws NoSuchUserException {
         User userToSave = findById(userDto.getId());
         userToSave.setFirstname(userDto.getFirstname());
         userToSave.setLastname(userDto.getLastname());

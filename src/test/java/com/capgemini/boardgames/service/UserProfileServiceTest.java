@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.service;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.model.playability.Playability;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class UserProfileServiceTest {
     }
 
     @Test
-    public void shouldFindUserProfileByIdAndReturnDto() {
+    public void shouldFindUserProfileByIdAndReturnDto() throws NoSuchUserException {
         //When
         UserDto userDto = userProfileService.getUserProfileById(5);
 
@@ -36,7 +37,7 @@ public class UserProfileServiceTest {
     }
 
     @Test
-    public void shouldEditUserProfileAndReturnDto() {
+    public void shouldEditUserProfileAndReturnDto() throws NoSuchUserException {
         //Given
         UserDto userDto = new UserDto(5, "Stefan", "Stefanowicz", "Witam", "stefan@mail.com", "admin");
 

@@ -22,7 +22,7 @@ public class GameController {
     }
 
     @PutMapping(path = "/games", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List> findGamesByParams(@RequestBody GameByRequestDTO gameByRequestDTO, BindingResult bindingResult) {
+    public ResponseEntity<List> findGamesByParams(@RequestBody GameByRequestDTO gameByRequestDTO, BindingResult bindingResult) throws Exception {
 
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();

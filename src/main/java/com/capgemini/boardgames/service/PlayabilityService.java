@@ -1,5 +1,6 @@
 package com.capgemini.boardgames.service;
 
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.model.User;
 import com.capgemini.boardgames.model.playability.Challenge;
 import com.capgemini.boardgames.model.playability.Playability;
@@ -23,7 +24,7 @@ public class PlayabilityService {
     private GameRepository gameRepository;
 
 
-    public void addUserPlayabilityHours(long userId, String startTime, String endTime) {
+    public void addUserPlayabilityHours(long userId, String startTime, String endTime) throws NoSuchUserException {
         LocalTime startHour = LocalTime.parse(startTime);
         LocalTime endHour = LocalTime.parse(endTime);
 
@@ -31,7 +32,7 @@ public class PlayabilityService {
     }
 
 
-    public void editUserPlayabilityHours(long userId, String startTime, String endTime, String message) {
+    public void editUserPlayabilityHours(long userId, String startTime, String endTime, String message) throws NoSuchUserException {
         Playability playability = userRepository.findById(userId).getPlayability();
         playability.setStartTime(LocalTime.parse(startTime));
         playability.setEndTime(LocalTime.parse(endTime));
@@ -39,7 +40,7 @@ public class PlayabilityService {
     }
 
 
-    public void removeUserPlayabilityHours(long userId, String message) {
+    public void removeUserPlayabilityHours(long userId, String message) throws NoSuchUserException {
         Playability playability = userRepository.findById(userId).getPlayability();
         playability.setStartTime(LocalTime.parse("00:00"));
         playability.setEndTime(LocalTime.parse("00:00"));
@@ -47,7 +48,7 @@ public class PlayabilityService {
     }
 
 
-    public List<Long> getUsersWithSimilarPlayability(long userId, String gameName) {
+    public List<Long> getUsersWithSimilarPlayability(long userId, String gameName) throws NoSuchUserException {
 
         List<Long> users = gameRepository.getUsersWithSpecifiedGame(gameName);
         Playability userPlayability = userRepository.findById(userId).getPlayability();

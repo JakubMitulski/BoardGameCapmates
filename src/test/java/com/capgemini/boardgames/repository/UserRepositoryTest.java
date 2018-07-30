@@ -1,6 +1,7 @@
 package com.capgemini.boardgames.repository;
 
 import com.capgemini.boardgames.dto.UserDto;
+import com.capgemini.boardgames.exception.NoSuchUserException;
 import com.capgemini.boardgames.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void shouldReturnCorrectUserWhenFindByIdMethodCall() {
+    public void shouldReturnCorrectUserWhenFindByIdMethodCall() throws NoSuchUserException {
         //When
         String lastname = userRepository.findById(3).getLastname();
 
@@ -36,7 +37,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void shouldUpdateUserWhenUpdateMethodCall() {
+    public void shouldUpdateUserWhenUpdateMethodCall() throws NoSuchUserException {
         //Given
         UserDto userDto = new UserDto(2, "Janusz", "Nowak", "My motto has changed", "2@mail.com", "password");
 

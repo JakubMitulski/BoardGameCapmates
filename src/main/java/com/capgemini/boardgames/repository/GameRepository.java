@@ -1,5 +1,9 @@
 package com.capgemini.boardgames.repository;
 
+import com.capgemini.boardgames.exception.NoSuchGameMaxPlayerException;
+import com.capgemini.boardgames.exception.NoSuchGameMinPlayerException;
+import com.capgemini.boardgames.exception.NoSuchGameNameException;
+import com.capgemini.boardgames.exception.NoSuchGameSubscribersException;
 import com.capgemini.boardgames.model.Game;
 
 import java.util.List;
@@ -21,13 +25,13 @@ public interface GameRepository {
 
     boolean checkIfGamesCollectionContainsGame(String gameName);
 
-    Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber);
+    Set<Game> filterGameByMinPlayersNumber(Integer minPlayersNumber) throws NoSuchGameMinPlayerException;
 
-    Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber);
+    Set<Game> filterGameByMaxPlayersNumber(Integer maxPlayerNumber) throws NoSuchGameMaxPlayerException;
 
-    Set<Game> filterGamesOfSubscribers(List<Long> subscribersList);
+    Set<Game> filterGamesOfSubscribers(List<Long> subscribersList) throws NoSuchGameSubscribersException;
 
-    Set<Game> filterGameByName(String gameName);
+    Set<Game> filterGameByName(String gameName) throws NoSuchGameNameException;
 
     Set<Game> getTempGamesCollection();
 
