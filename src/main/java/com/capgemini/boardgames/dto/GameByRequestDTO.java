@@ -13,4 +13,14 @@ public class GameByRequestDTO {
     private Integer minPlayersNumber;
     private Integer maxPlayersNumber;
     private List<Long> subscribersList;
+
+    public GameByRequestDTO() {
+    }
+
+    public GameByRequestDTO(String gameName, Integer minPlayersNumber, Integer maxPlayersNumber, List<Long> subscribersList) {
+        this.gameName = gameName;
+        this.minPlayersNumber = minPlayersNumber;
+        this.maxPlayersNumber = maxPlayersNumber;
+        this.subscribersList = subscribersList;
+    }
 }

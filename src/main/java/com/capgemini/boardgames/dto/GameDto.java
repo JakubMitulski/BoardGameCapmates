@@ -14,7 +14,6 @@ public class GameDto {
     private String name;
     private int minPlayerNumber;
     private int maxPlayerNumber;
-
     private List<Long> subscribersList;
 
 
