@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -50,30 +52,31 @@ public class UserProfileControllerTest {
 
     @Test
     public void shouldReturnProperUserProfile() throws Exception {
-        // given
+        //Given
         UserDto userDto = new UserDto(1, "Jan", "Kowalski", "I like boardgames", "1@mail.com", "password");
-
         Mockito.when(userProfileService.getUserProfileById(1)).thenReturn(userDto);
 
-        // when
+        //When
         ResultActions resultActions = mockMvc.perform(get("http://localhost:9000/user/1"));
 
-        // then
+        //Then
         resultActions.andExpect(status().isOk()).andExpect(jsonPath("firstname").value("Jan"));
+        verify(userProfileService, times(1)).getUserProfileById(Mockito.anyLong());
     }
 
     @Test
     public void shouldEditUserProfile() throws Exception {
-        // given
+        //Given
         String json = "{\"id\":1,\"firstname\":\"Jan\",\"lastname\":\"Kowalski\",\"motto\":\"I like boardgames\",\"email\":\"1@mail.com\",\"password\":\"password\",\"playability\":{\"startTime\":\"00:00:00\",\"endTime\":\"00:00:00\",\"message\":\"\"}}";
 
-        // when
+        //When
         ResultActions resultActions = mockMvc.perform(put("http://localhost:9000/user")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(json));
 
-        // then
+        //Then
         resultActions.andExpect(status().isOk());
+        verify(userProfileService, times(1)).editUserProfile(Mockito.any(UserDto.class));
     }
 }
 

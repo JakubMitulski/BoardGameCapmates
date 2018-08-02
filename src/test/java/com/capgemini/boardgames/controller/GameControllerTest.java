@@ -22,6 +22,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -52,7 +54,7 @@ public class GameControllerTest {
 
     @Test
     public void shouldGetRequestByParams() throws Exception {
-        // given
+        //Given
         String json = "{\"minPlayersNumber\":2,\"maxPlayersNumber\":2,\"subscribersList\":[1,2]}";
 
         GameByRequestDTO gameByRequestDTO = new GameByRequestDTO();
@@ -73,14 +75,14 @@ public class GameControllerTest {
         ArrayList<GameDto> resultList = new ArrayList<>();
         resultList.add(battleship);
 
-        // when
+        //When
         Mockito.when(gameService.findGamesByParams(Mockito.any())).thenReturn(resultList);
-
         ResultActions resultActions = mockMvc.perform(put("http://localhost:9000/games")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(json));
 
-        // then
+        //Then
         resultActions.andExpect(status().isOk()).andExpect(jsonPath("$[0].name").value("Battleship"));
+        verify(gameService, times(1)).findGamesByParams(Mockito.any(GameByRequestDTO.class));
     }
 }
