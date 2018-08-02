@@ -82,7 +82,9 @@ public class GameControllerTest {
                 .content(json));
 
         //Then
-        resultActions.andExpect(status().isOk()).andExpect(jsonPath("$[0].name").value("Battleship"));
+        resultActions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("Battleship"));
         verify(gameService, times(1)).findGamesByParams(Mockito.any(GameByRequestDTO.class));
     }
 }

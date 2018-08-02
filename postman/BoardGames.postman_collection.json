@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "32cbdee5-aea4-4bc8-88e6-27623e24e5b1",
+		"name": "BoardGames",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "0f41710d-59b7-428f-be85-fdca9af0a097",
+			"name": "Get userProfile by userId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:9000/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"user",
+						"1"
+					]
+				},
+				"description": "getting user by id"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "ee43c3f0-301f-4736-abfe-f9d0e4e711a9",
+			"name": "Edit userProfile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"firstname\": \"Krzysztof\",\n    \"lastname\": \"Kowalski\",\n    \"motto\": \"I like boardgames\",\n    \"email\": \"1@mail.com\",\n    \"password\": \"passwodddrd\",\n    \"playability\": {\n        \"startTime\": \"00:00:00\",\n        \"endTime\": \"00:00:00\",\n        \"message\": \"\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"user"
+					]
+				},
+				"description": "user update"
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "bf31c1da-43c3-4d3a-8a7e-61446cb6771d",
+			"name": "Get game byParams - 1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"gameName\" : \"Chess\",\n\t\"minPlayersNumber\" : 2,\n\t\"maxPlayersNumber\" : 2,\n\t\"subscribersList\" : [1]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/games",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "87e2014d-9270-4a4b-8394-e6d5976ba7f4",
+			"name": "Get game byParams - 2",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"minPlayersNumber\" : 3,\n\t\"maxPlayersNumber\" : 2,\n\t\"subscribersList\" : [1]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/games",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"games"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

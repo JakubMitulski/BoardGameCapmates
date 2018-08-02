@@ -60,7 +60,9 @@ public class UserProfileControllerTest {
         ResultActions resultActions = mockMvc.perform(get("http://localhost:9000/user/1"));
 
         //Then
-        resultActions.andExpect(status().isOk()).andExpect(jsonPath("firstname").value("Jan"));
+        resultActions
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("firstname").value("Jan"));
         verify(userProfileService, times(1)).getUserProfileById(Mockito.anyLong());
     }
 
